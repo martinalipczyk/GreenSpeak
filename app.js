@@ -14,6 +14,28 @@ app.get( "/", ( req, res ) => {
     res.sendFile( __dirname + "/views/home.html" );
 } );
 
+app.get( "/opps", ( req, res ) => {
+    res.sendFile( __dirname + "/views/opps.html" );
+} );
+
+app.get( "/oppsub", ( req, res ) => {
+    res.sendFile( __dirname + "/views/oppsub.html" );
+} );
+
+app.post("/submit-event", (req, res) => {
+    console.log(req.body);
+    const { first_name, last_name, email, event, description, organization, date } = req.body;
+    const osub = `INSERT INTO opportunities (first_name, last_name, email, event, description, organization, date) 
+VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+    db.execute(osub, [first_name, last_name, email, event, description, organization, date], (error, result) => {
+        if (error) {
+            return res.status(500).send("There was an error submitting your event.");
+        }
+        res.send("Event submitted successfully!");
+    });
+});
+
 app.listen( port, () => {
     console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
 } );
