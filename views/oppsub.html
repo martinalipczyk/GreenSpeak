@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <head>Post an Environmental Cleanup Event</head>
+
+    <form id="eventForm" action="/submit-event" method="post">
+      <div class="input-field">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" required>
+      </div>
+      <div class="input-field">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" required>
+      </div>
+      <div class="input-field">
+          <label for="event">Event</label>
+          <input type="text" id="event" name="event" required>
+      </div>
+      <div class="input-field">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" required></textarea>
+      </div>
+      <div class="input-field">
+          <label for="organization">Organization</label>
+          <input type="text" id="organization" name="organization">
+      </div>
+      <div class="input-field">
+          <label for="date">Event Date</label>
+          <input type="date" id="date" name="date" required>
+      </div>
+      <button type="submit">Submit Event</button>
+  </form>
+
+    <p>*to prevent misinformation, all submissions will be manually reviewed before posted</p>
+
+</body>
+</html>
