@@ -1,15 +1,39 @@
-    #navlogo {
-        margin-top: 10px;
-        margin-left: 5px;
-        height: 50px;
-        width: 50px;
-    }
+body{
+    background-image:url(nature.jpg);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;  
+    height: 100vh;  
+    margin: 0; 
+}
 
-    .nav-color li {
-        margin-right: 20px; /* Adjust space between items */
-    }
 
-    ul.nav-color {
-        list-style: none; /* Remove bullets */
-        padding: 0;
-    }
+nav {
+    background-color: #f0f0f0; 
+    padding: 10px; 
+}
+
+ul {
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+    display: flex; 
+    align-items: center; 
+}
+
+li {
+    margin-right: 20px;
+}
+
+#navlogo {
+    margin-right: 10px; 
+    height: 50px; 
+    width: 50px; 
+}
+
+h1{
+    text-align: center; /* Center-align the text */
+    z-index: 3; /* Ensure it appears above the overlay */
+    position: relative; /* Position relative to ensure z-index works */
+    color: #000000; /* Text color for contrast against background */
+}
