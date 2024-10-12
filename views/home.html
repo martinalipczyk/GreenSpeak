@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Name</title>
     <link rel="stylesheet" href="home.css">
+
     
 </head>
 <body>
-    <nav class = "nav-color center-align">
+    <nav>
     
         <ul>
-            <row>
           <li><img class = "img" id ="navlogo" src = "/images/mwlogo.png" alt = "mwlogo"></li>
-          <style>
-            #navlogo{
-              margin-top:10px;
-              margin-left:5px;
-              height:50px;
-              width:50px;
-            }
-          </style>
-          <li><a href ="/home">moodwise</a></li>
-          <li><a href ="/journaling">journaling</a></li>
-          <li><a class = "nav-color black-text col" href = "/journaling/viewJournals">view journals</a></li>
-          <li><a href ="/moodtracker">mood tracker</a></li>
+          
+          <li><a href ="/map">map</a></li>
+          <li><a href ="/blog">blog</a></li>
+          <li><a class = "nav-color black-text col" href = "/articles">articles</a></li>
+          <li><a href ="/getinvolved">get involved</a></li>
           <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
-          <li><a href = "/todo">to-do</a></li>
+          <li><a href = "/more">more</a></li>
           </row>
         </ul>
     
       </nav>
       
-    <h1>What is Pollution?</h1>
-    <p>pollution is .............</p>
+    <h1>Our Name</h1>
+    
+    <form id="zipCodeForm" onsubmit="searchZipCode(event)">
+      <label for="zipCode">Enter your zip code:</label>
+      <input type="text" id="zipCode" name="zipCode" required placeholder="Zip Code">
+      <button type="submit">Search</button>
+  </form>
+    <form>
+
+    </form>
 </body>
 </html>
