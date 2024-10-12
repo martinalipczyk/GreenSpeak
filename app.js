@@ -1,7 +1,9 @@
 const express = require( "express" );
 const app = express();
 const port = 3000;
+const logger = require("morgan");
 
+app.use(logger("dev"));
 app.use(express.static(__dirname + "/public"));
 app.set( "views",  __dirname + "/views");
 
