@@ -17,6 +17,7 @@ body {
 
 #second_bg {
     background-color: rgb(218, 231, 223);
+    scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -59,6 +60,7 @@ body {
 
 #third_bg {
     background-color: rgb(255, 255, 255);
+    scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
