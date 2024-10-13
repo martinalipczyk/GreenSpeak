@@ -43,8 +43,51 @@
         </div>
 
         <div class="submit-article-container">
-            <a class="submit-article" href="/articlesub">Submit an Article</a>
+            <div>
+                <button id="submit-article-btn" class="black-text col">Submit an Article</button>
+            </div>
         </div>
     </div>
+
+    <div id="articleModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Submit an Article</h2>
+            <form id="articleForm" action="/submit-article" method="post">
+                <div class="input-field">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="input-field">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-field">
+                    <label for="title">Article Title</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="input-field">
+                    <label for="content">Text</label>
+                    <textarea id="content" name="text" required></textarea>
+                </div>
+                <div class="input-field">
+                    <label for="institution">Institution</label>
+                    <input type="text" id="institution" name="institution">
+                </div>
+                <div class="input-field">
+                    <label for="date">Date Finished</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <button type="submit" class="submit-btn">Submit Article</button>
+            </form>
+            <p id = "formP">To prevent misinformation, all submissions will be reviewed before being posted.</p>
+        </div>
+    </div>
+
+    <script src="scripts/modal.js"></script>
 </body>
 </html>
