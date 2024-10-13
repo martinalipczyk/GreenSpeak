@@ -3,32 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h2 {
-            margin-bottom: 20px;
-        }
-        .article-button {
-            display: block;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #56575a;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .article-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <title>Articles</title>
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <link rel="stylesheet" href="stylesheets/articles.css">
+    
 </head>
 <body>
-    <p>latest articles</p>
+    <nav>
+    
+        <ul>
+          
+          <li><a href ="/">HOME PAGE</a></li>
+          <li><a href ="#third_bg">POLLUTION MAP</a></li>
+          <li><a class = "nav-color black-text col" href = "#article-section">ARTICLES</a></li>
+          <li><div class="nav-title">Green Speak</div></li>
+          <li><a class = "nav-color black-text col" href = "#opp-section">OPPORTUNITIES</a></li>
+          <li><a href ="/getinvolved">GET INVOLVED</a></li>
+          <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
+          <li><a href = "/more">more</a></li>
+          </row>
+        </ul>
+    
+      </nav>
+    <h1>Latest Articles</h1>
+    
     <% if (articles.length === 0) { %>
         <p>No articles available.</p>
     <% } else { %>
