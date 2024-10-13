@@ -27,15 +27,10 @@
       
     <h1>Our Name</h1>
     
-    <div id="form-container">
-      <form id="zipCodeForm" onsubmit="searchZipCode(event)">
-          <label for="zipCode">Enter your zip code:</label>
-          <input type="text" id="zipCode" name="zipCode" required placeholder="Zip Code">
-          <button type="submit">Search</button>
-      </form>
-  </div>
-    <!-- <form>
-
-    </form> -->
+    <form id="zipCodeForm" action="/nearyou" method="get">
+      <label for="zipCode">Enter your zip code:</label>
+      <input type="text" id="zipCode" name="zipCode" required placeholder="Zip Code">
+      <button type="submit">Search</button>
+    </form>
 </body>
 </html>

@@ -4,6 +4,9 @@ const port = 3000;
 const logger = require("morgan");
 const path = require("path");
 const db = require("./db/db_connection");
+const axios = require("axios");
+const airNowApiKey = process.env.AIRNOW_API_KEY;
+
 
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
@@ -39,7 +42,6 @@ app.get("/articles/:article_id", (req, res) => {
         res.render("article", { article: results[0] });
     });
 });
-
 
 
 app.get("/articlesub", (req, res) => {
@@ -103,6 +105,26 @@ app.post("/submit-article", (req, res) => {
         res.send("Article submitted successfully!");
     });
 });
+
+app.get("/nearyou", (req, res) => {
+    const zipcode = req.query.zipCode;
+    const airNowUrl = `http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipcode}&distance=25&API_KEY=${airNowApiKey}`;
+
+    axios.get(airNowUrl)
+        .then(response => {
+            if (response.data && response.data.length > 0) {
+                const airData = response.data[0]; // Get the first result
+                res.render("nearyou", { airData, zipcode, error: null });
+            } else {
+                res.render("nearyou", { airData: null, zipcode, error: "No data available for this ZIP code." });
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching air quality data:", error);
+            res.render("nearyou", { airData: null, zipcode, error: "Unable to fetch data. Please try again." });
+        });
+});
+
 
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
