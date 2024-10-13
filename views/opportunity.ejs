@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= opportunity.event %></title>
+</head>
+<body>
+
+    <h1><%= opportunity.event %></h1>
+    <p><strong>Organizer:</strong> <%= opportunity.organization %></p>
+    <p><strong>Author:</strong> <%= opportunity.first_name %> <%= opportunity.last_name %></p>
+    <p><strong>Description:</strong> <%= opportunity.description %></p>
+    <p><strong>Opportunity/Event Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
+    <p></p>
+    <p><strong>Interested? Contact:</strong><%= opportunity.email%></p>
+
+    <a href="/opportunities">Back to Opportunities</a>
+
+</body>
+</html>

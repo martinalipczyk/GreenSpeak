@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunities/Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .opportunity-button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #5c5c5c;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .opportunity-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Opportunities and Events</h2>
+
+    <% if (opportunities.length === 0) { %>
+        <p>No opportunities available.</p>
+    <% } else { %>
+        <% opportunities.forEach(opportunity => { %>
+            <a href="/opportunities/<%= opportunity.opp_id %>" class="opportunity-button">
+                <h3><%= opportunity.event %></h3>
+                <p><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
+                <p><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
+            </a>
+        <% }); %>
+    <% } %>
+
+    <div><a class = "black-text col" href = "/oppsub">submit an opportunity</a></div>
+
+</body>
+</html>

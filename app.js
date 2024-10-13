@@ -46,15 +46,24 @@ app.get("/articlesub", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "articlesub.html"));
 });
 
-app.get("/opps", (req, res) => {
-    res.sendFile(path.join(__dirname, "views", "opps.html"));
+app.get("/opportunities", (req, res) => {
+    const sql = "SELECT * FROM opportunities ORDER BY date DESC";
+
+    db.execute(sql, (error, results) => {
+        if (error) {
+            console.error("Error fetching opportunities:", error);
+            return res.status(500).send("There was an error fetching opportunities.");
+        }
+        
+        res.render("opportunities", { opportunities: results });
+    });
 });
 
 app.get("/oppsub", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "oppsub.html"));
 });
 
-app.post("/submit-event", (req, res) => {
+app.post("/submit-opp", (req, res) => {
     console.log(req.body);
     const { first_name, last_name, email, event, description, organization, date } = req.body;
     const osub = `INSERT INTO opportunities (first_name, last_name, email, event, description, organization, date) 
@@ -65,6 +74,19 @@ app.post("/submit-event", (req, res) => {
             return res.status(500).send("There was an error submitting your event.");
         }
         res.send("Event submitted successfully!");
+    });
+});
+
+app.get("/opportunities/:opp_id", (req, res) => {
+    const oppId = req.params.opp_id; 
+    const getOpps = "SELECT * FROM opportunities WHERE opp_id = ?"; 
+
+    db.execute(getOpps, [oppId], (error, results) => {
+        if (error || results.length === 0) {
+            console.error("Error fetching opportunity:", error);
+            return res.status(404).send("Opportunity not found.");
+        }
+        res.render("opportunity", { opportunity: results[0] });
     });
 });
 
