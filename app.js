@@ -6,6 +6,10 @@ const path = require("path");
 const db = require("./db/db_connection");
 const axios = require("axios");
 const airNowApiKey = process.env.AIRNOW_API_KEY;
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 
 
 app.use(logger("dev"));
@@ -13,6 +17,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");  
 app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
+app.use(express.static('public'));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "home.html"));
@@ -106,25 +113,95 @@ app.post("/submit-article", (req, res) => {
     });
 });
 
+// app.get("/nearyou", (req, res) => {
+//     const zipcode = req.query.zipCode;
+//     const airNowUrl = `http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipcode}&distance=25&API_KEY=${airNowApiKey}`;
+
+//     axios.get(airNowUrl)
+//         .then(response => {
+//             if (response.data && response.data.length > 0) {
+//                 const airData = response.data[0]; // Get the first result
+//                 res.render("nearyou", { airData, zipcode, error: null });
+//             } else {
+//                 res.render("nearyou", { airData: null, zipcode, error: "No data available for this ZIP code." });
+//             }
+//         })
+//         .catch(error => {
+//             console.error("Error fetching air quality data:", error);
+//             res.render("nearyou", { airData: null, zipcode, error: "Unable to fetch data. Please try again." });
+//         });
+// });
+
 app.get("/nearyou", (req, res) => {
     const zipcode = req.query.zipCode;
     const airNowUrl = `http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipcode}&distance=25&API_KEY=${airNowApiKey}`;
 
     axios.get(airNowUrl)
-        .then(response => {
+        .then(async (response) => {
             if (response.data && response.data.length > 0) {
                 const airData = response.data[0]; // Get the first result
-                res.render("nearyou", { airData, zipcode, error: null });
+
+                // Send air quality information to ChatGPT for recommendations
+                const chatGPTResponse = await axios.post(
+                    'https://api.openai.com/v1/chat/completions',
+                    {
+                        model: 'gpt-3.5-turbo',
+                        messages: [
+                            {
+                                role: 'user',
+                                content: `The air quality index (AQI) is ${airData.AQI} with a category of ${airData.Category.Name}. What precautions should I take?`
+                            }
+                        ]
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+                        },
+                    }
+                );
+
+                const chatGPTReply = chatGPTResponse.data.choices[0].message.content;
+
+                res.render("nearyou", { airData, zipcode, error: null, chatGPTReply });
             } else {
-                res.render("nearyou", { airData: null, zipcode, error: "No data available for this ZIP code." });
+                res.render("nearyou", { airData: null, zipcode, error: "No data available for this ZIP code.", chatGPTReply: null });
             }
         })
         .catch(error => {
             console.error("Error fetching air quality data:", error);
-            res.render("nearyou", { airData: null, zipcode, error: "Unable to fetch data. Please try again." });
+            res.render("nearyou", { airData: null, zipcode, error: "Unable to fetch data. Please try again.", chatGPTReply: null });
         });
 });
 
+
+
+app.post('/chat', async (req, res) => {
+    const { message } = req.body;
+  
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-3.5-turbo',
+          messages: [{ role: 'user', content: message }],
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+          },
+        }
+      );
+  
+      res.json({ reply: response.data.choices[0].message.content });
+    } catch (error) {
+      console.error('Error fetching ChatGPT response:', error.message);
+      res.status(500).json({ error: 'Failed to connect to ChatGPT' });
+    }
+  });
+  
+ 
 
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
