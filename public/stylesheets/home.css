@@ -240,19 +240,6 @@ button:hover {
     background-color: #45a049; 
 }
 
-nav {
-    background-color: rgb(218, 231, 223); 
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 80px; 
-    padding: 0 20px; 
-    position:fixed;
-    width:100%;
-    border-bottom: #000000;
-    margin-left:-25px;
-}
-
 ul {
     list-style-type: none; 
     margin: 0; 
@@ -264,6 +251,19 @@ ul {
 
 li {
     margin-right: 20px; 
+}
+
+nav {
+    background-color: rgb(218, 231, 223); 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 80px; 
+    padding: 0 20px; 
+    position:fixed;
+    width:100%;
+    border-bottom: #000000;
+    margin-left:-25px;
 }
 
 nav a {
