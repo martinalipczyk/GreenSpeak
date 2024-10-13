@@ -104,7 +104,7 @@ body {
 }
 
 #learn-more a {
-    text-decoration: none; 
+    text-decoration:underline; 
     text-align:center;
     color: #333; 
     padding: 10px 0; 
@@ -153,6 +153,29 @@ body {
     line-height: 1.5;
 }
 
+#opp-section {
+    background-color: rgb(255, 255, 255);
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left; 
+}
+
+
+
+#opp-section h1 {
+    font-size: 36px; 
+    color: #000000; 
+    margin: 0; 
+    text-align: center;
+}
+
+#opp-section p {
+    font-size: 20px; 
+    color: #333; 
+    line-height: 1.5;
+}
 
 
 
