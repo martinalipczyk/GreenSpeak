@@ -33,7 +33,7 @@
         <p>No articles available.</p>
     <% } else { %>
         <% articles.forEach(article => { %>
-            <a href="/articles/<%= article.article_id %>" class="article-button"> <!-- Use article_id here -->
+            <a href="/articles/<%= article.article_id %>" class="article-button"> 
                 <h3><%= article.title %></h3>
                 <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
                 <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>

@@ -28,18 +28,19 @@ app.get("/articles", (req, res) => {
 });
 
 app.get("/articles/:article_id", (req, res) => {
-    const articleId = req.params.article_id; // Use article_id from the request parameters
-    const sql = "SELECT * FROM articles WHERE article_id = ?"; // Use article_id in the SQL query
+    const id = req.params.article_id; 
+    const getArticle = "SELECT * FROM articles WHERE article_id = ?"; 
 
-    db.execute(sql, [articleId], (error, results) => {
+    db.execute(getArticle, [id], (error, results) => {
         if (error || results.length === 0) {
             console.error("Error fetching article:", error);
             return res.status(404).send("Article not found.");
         }
-        // Render the article details page and pass the article data to the template
         res.render("article", { article: results[0] });
     });
 });
+
+
 
 app.get("/articlesub", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "articlesub.html"));
