@@ -33,13 +33,17 @@ app.get("/articles", (req, res) => {
             console.error("Error fetching articles:", error);
             return res.status(500).send("There was an error fetching articles.");
         }
+        console.log(results)
+        console.log("hi")
         res.render("articles", { articles: results });
+        console.log(results)
     });
 });
 
 app.get("/articles/:article_id", (req, res) => {
     const id = req.params.article_id; 
     const getArticle = "SELECT * FROM articles WHERE article_id = ?"; 
+    
 
     db.execute(getArticle, [id], (error, results) => {
         if (error || results.length === 0) {
@@ -47,12 +51,36 @@ app.get("/articles/:article_id", (req, res) => {
             return res.status(404).send("Article not found.");
         }
         res.render("article", { article: results[0] });
+        console.log(results[0]);
     });
 });
 
 
 app.get("/articlesub", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "articlesub.html"));
+});
+
+app.post("/submit-article", (req, res) => {
+    console.log(req.body);
+    const { first_name, last_name, title, text, date, email, institution } = req.body;
+    const asub = `INSERT INTO articles (first_name, last_name, title, text, date, email, institution) 
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+    db.execute(asub, [first_name, last_name, title, text, date, email, institution], (error, result) => {
+        if (error) {
+            return res.status(500).json({ error: "There was an error submitting your article." });
+        }
+        // Return a JSON response with the article data
+        res.json({
+            article: {
+                article_id: result.insertId, // Use the insert ID from the database
+                first_name,
+                last_name,
+                title,
+                date
+            }
+        });
+    });
 });
 
 app.get("/opportunities", (req, res) => {
@@ -100,18 +128,23 @@ app.get("/opportunities/:opp_id", (req, res) => {
 });
 
 app.post("/submit-article", (req, res) => {
-    console.log(req.body);
+    console.log("the data recieved: ",  req.body);  
     const { first_name, last_name, title, text, date, email, institution } = req.body;
     const asub = `INSERT INTO articles (first_name, last_name, title, text, date, email, institution) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
     db.execute(asub, [first_name, last_name, title, text, date, email, institution], (error, result) => {
         if (error) {
+            console.error("Error submitting article to the database:", error);
             return res.status(500).send("There was an error submitting your article.");
         }
-        res.send("Article submitted successfully!");
+
+        
+        res.redirect("/articles");
     });
 });
+
+
 
 // app.get("/nearyou", (req, res) => {
 //     const zipcode = req.query.zipCode;

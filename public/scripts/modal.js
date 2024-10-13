@@ -1,7 +1,5 @@
 var modal = document.getElementById("articleModal");
-
 var btn = document.getElementById("submit-article-btn");
-
 var span = document.getElementsByClassName("close")[0];
 
 btn.onclick = function() {
