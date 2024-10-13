@@ -273,8 +273,7 @@ nav a {
     background-color: transparent; 
     border: none; 
     border-radius: 5px; 
-    padding-left: 60px;
-    padding-right: 60px;
+
     font-size: 16px; 
     font-family: 'Times New Roman', Times, serif; 
     transition: color 0.3s; 
@@ -301,8 +300,6 @@ nav a.active {
     padding: 5px 10px; 
     border-radius: 2px; 
     background-color: white; 
-    padding-left: 60px;
-    padding-right: 60px;
     font-size: 40px; 
     font-weight: bold;
     color: #333; 
