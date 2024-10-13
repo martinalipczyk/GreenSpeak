@@ -21,7 +21,7 @@ form {
     display: flex; 
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height: 50vh; 
 }
 
 input[type="text"] {
@@ -52,8 +52,10 @@ button:hover {
 
 
 nav {
-    background-color: #f0f0f0; 
-    padding: 10px; 
+    background-color: #f0f0f0;; 
+    padding: 20px; 
+    justify-content: center;
+    align-items: center; 
     
 }
 
@@ -69,6 +71,28 @@ li {
     margin-right: 20px;
 }
 
+nav a {
+    text-decoration: none; 
+    color: #333; 
+    padding: 10px 20px; 
+    background-color: #e0e0e0; 
+    border-radius: 5px; 
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif; 
+    transition: background-color 0.3s; 
+}
+
+nav a:hover {
+    background-color: #d0d0d0; 
+    color: #000; 
+    cursor: pointer; 
+}
+
+nav a.active {
+    background-color: #4CAF50; 
+    color: white; 
+}
+
 #navlogo {
     margin-right: 10px; 
     height: 50px; 
@@ -80,5 +104,6 @@ h1{
     z-index: 3; 
     position: relative; 
     color: #000000; 
+    font-size:40px;
 }
 
