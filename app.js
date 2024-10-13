@@ -6,35 +6,58 @@ const path = require("path");
 const db = require("./db/db_connection");
 
 app.use(logger("dev"));
-app.use(express.static(__dirname + "/public"));
-app.set( "views",  __dirname + "/views");
+app.use(express.static(path.join(__dirname, "public")));
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");  
 app.use(express.urlencoded({ extended: true }));
 
-app.get( "/", ( req, res ) => {
-    res.sendFile( __dirname + "/views/home.html" );
-} );
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "home.html"));
+});
 
-app.get( "/articles", ( req, res ) => {
-    res.sendFile( __dirname + "/views/articles.html" );
-} );
+app.get("/articles", (req, res) => {
+    const getarticles = "SELECT * FROM articles ORDER BY date DESC"; 
 
-app.get( "/articlesub", ( req, res ) => {
-    res.sendFile( __dirname + "/views/articlesub.html" );
-} );
+    db.execute(getarticles, (error, results) => {
+        if (error) {
+            console.error("Error fetching articles:", error);
+            return res.status(500).send("There was an error fetching articles.");
+        }
+        res.render("articles", { articles: results });
+    });
+});
 
-app.get( "/opps", ( req, res ) => {
-    res.sendFile( __dirname + "/views/opps.html" );
-} );
+app.get("/articles/:article_id", (req, res) => {
+    const articleId = req.params.article_id; // Use article_id from the request parameters
+    const sql = "SELECT * FROM articles WHERE article_id = ?"; // Use article_id in the SQL query
 
-app.get( "/oppsub", ( req, res ) => {
-    res.sendFile( __dirname + "/views/oppsub.html" );
-} );
+    db.execute(sql, [articleId], (error, results) => {
+        if (error || results.length === 0) {
+            console.error("Error fetching article:", error);
+            return res.status(404).send("Article not found.");
+        }
+        // Render the article details page and pass the article data to the template
+        res.render("article", { article: results[0] });
+    });
+});
+
+app.get("/articlesub", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "articlesub.html"));
+});
+
+app.get("/opps", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "opps.html"));
+});
+
+app.get("/oppsub", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "oppsub.html"));
+});
 
 app.post("/submit-event", (req, res) => {
     console.log(req.body);
     const { first_name, last_name, email, event, description, organization, date } = req.body;
     const osub = `INSERT INTO opportunities (first_name, last_name, email, event, description, organization, date) 
-VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
     db.execute(osub, [first_name, last_name, email, event, description, organization, date], (error, result) => {
         if (error) {
@@ -48,16 +71,16 @@ app.post("/submit-article", (req, res) => {
     console.log(req.body);
     const { first_name, last_name, title, text, date, email, institution } = req.body;
     const asub = `INSERT INTO articles (first_name, last_name, title, text, date, email, institution) 
-VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    VALUES (?, ?, ?, ?, ?, ?, ?)`;
 
     db.execute(asub, [first_name, last_name, title, text, date, email, institution], (error, result) => {
         if (error) {
             return res.status(500).send("There was an error submitting your article.");
         }
-        res.send("article");
+        res.send("Article submitted successfully!");
     });
 });
 
-app.listen( port, () => {
-    console.log(`App server listening on ${ port }. (Go to http://localhost:${ port })` );
-} );
+app.listen(port, () => {
+    console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
+});

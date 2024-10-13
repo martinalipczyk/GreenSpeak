@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= article.title %></title>
+</head>
+<body>
+
+    <h1><%= article.title %></h1>
+    <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
+    <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
+    <p><strong>Institution:</strong> <%= article.institution %></p>
+    <p><%= article.text %></p>
+
+    <a href="/articles">Back to Articles</a>
+
+</body>
+</html>

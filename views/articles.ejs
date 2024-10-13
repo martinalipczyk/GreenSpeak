@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .article-button {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .article-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <p>latest articles</p>
+    <% if (articles.length === 0) { %>
+        <p>No articles available.</p>
+    <% } else { %>
+        <% articles.forEach(article => { %>
+            <a href="/articles/<%= article.article_id %>" class="article-button"> <!-- Use article_id here -->
+                <h3><%= article.title %></h3>
+                <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
+                <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
+            </a>
+        <% }); %>
+    <% } %>
+    <div><a class = "black-text col" href = "/articlesub">submit an article</a></div>
+</body>
+</html>
