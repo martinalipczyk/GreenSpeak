@@ -90,6 +90,12 @@ body {
 #third_bg iframe{
     height:100px;
 }
+#article-section img {
+    width: 170px; 
+    max-height:170px;
+    height: auto; 
+    margin-top:30px;
+}
 
 #learn-more {
     display: flex; 
@@ -132,10 +138,7 @@ body {
     text-align: left; 
 }
 
-#article-section img {
-    width: 200px; 
-    height: auto; 
-}
+
 
 #article-section h1 {
     font-size: 36px; 
