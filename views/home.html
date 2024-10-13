@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Insert Name</title>
-    <link rel="stylesheet" href="/stylesheets/home.css">
+    <link rel="stylesheet" href="stylesheets/home.css">
 
     
 </head>
@@ -28,13 +28,15 @@
       
     <h1>Our Name</h1>
     
-    <form id="zipCodeForm" onsubmit="searchZipCode(event)">
-      <label for="zipCode">Enter your zip code:</label>
-      <input type="text" id="zipCode" name="zipCode" required placeholder="Zip Code">
-      <button type="submit">Search</button>
-  </form>
-    <form>
+    <div id="form-container">
+      <form id="zipCodeForm" onsubmit="searchZipCode(event)">
+          <label for="zipCode">Enter your zip code:</label>
+          <input type="text" id="zipCode" name="zipCode" required placeholder="Zip Code">
+          <button type="submit">Search</button>
+      </form>
+  </div>
+    <!-- <form>
 
-    </form>
+    </form> -->
 </body>
 </html>

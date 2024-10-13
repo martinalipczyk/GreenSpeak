@@ -1,16 +1,60 @@
-body{
-    background-image:url(nature.jpg);
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center;  
-    height: 100vh;  
-    margin: 0; 
+body {
+    
+    height: 100vh; 
+    margin: 0;
+    background-image: url('/images/nature.jpg'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
+
+form {
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 30px; 
+    border-radius: 10px; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 300px; 
+    text-align: center; 
+    align-items: center;
+}
+#form-container {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
+input[type="text"] {
+    width: 90%; 
+    padding: 15px; 
+    font-size: 18px; 
+    margin-top: 10px; 
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+}
+
+button {
+    width: 100%; 
+    padding: 15px; 
+    font-size: 18px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    margin-top: 10px; 
+    cursor: pointer; 
+}
+
+button:hover {
+    background-color: #45a049; 
+}
+
 
 
 nav {
     background-color: #f0f0f0; 
     padding: 10px; 
+    
 }
 
 ul {
@@ -32,8 +76,9 @@ li {
 }
 
 h1{
-    text-align: center; /* Center-align the text */
-    z-index: 3; /* Ensure it appears above the overlay */
-    position: relative; /* Position relative to ensure z-index works */
-    color: #000000; /* Text color for contrast against background */
+    text-align: center; 
+    z-index: 3; 
+    position: relative; 
+    color: #000000; 
 }
+
