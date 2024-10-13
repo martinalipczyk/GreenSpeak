@@ -94,11 +94,11 @@ app.get("/opportunities/:opp_id", (req, res) => {
 
 app.post("/submit-article", (req, res) => {
     console.log(req.body);
-    const { first_name, last_name, title, text, date, email, institution } = req.body;
-    const asub = `INSERT INTO articles (first_name, last_name, title, text, date, email, institution) 
+    const { first_name, last_name, email, title, text, institution, date } = req.body;
+    const asub = `INSERT INTO articles (first_name, last_name, email, title, text, institution, date) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
-
-    db.execute(asub, [first_name, last_name, title, text, date, email, institution], (error, result) => {
+    console.log(req.body);
+    db.execute(asub, [first_name, last_name, email, title, text, institution, date], (error, result) => {
         if (error) {
             return res.status(500).send("There was an error submitting your article.");
         }
