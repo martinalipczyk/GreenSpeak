@@ -17,9 +17,7 @@ body {
 
 #second_bg {
     background-color: rgb(218, 231, 223);
-    scroll-margin-top: 80px;
     padding: 50px 20px;
-    padding-right: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,7 +59,6 @@ body {
 
 #third_bg {
     background-color: rgb(255, 255, 255);
-    scroll-margin: 80px;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -96,7 +93,6 @@ body {
 #third_bg iframe{
     height:100px;
 }
-
 #article-section img {
     width: 170px; 
     max-height:170px;
