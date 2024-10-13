@@ -254,9 +254,13 @@ nav a.active {
     width: 50px; 
 }
 
-nav h1 {
-    margin: 0; 
+.nav-title {
+    border: 2px solid #4CAF50; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    background-color: white; 
     font-size: 35px; 
-    color: #000; 
-    text-align: center; 
+    color: #333; 
+    font-family: 'Times New Roman', Times, serif;
 }
+
