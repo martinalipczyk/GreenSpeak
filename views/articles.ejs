@@ -6,38 +6,45 @@
     <title>Articles</title>
     <link rel="stylesheet" href="stylesheets/home.css">
     <link rel="stylesheet" href="stylesheets/articles.css">
-    
 </head>
 <body>
     <nav>
-    
         <ul>
-          
-          <li><a href ="/">HOME PAGE</a></li>
-          <li><a href ="#third_bg">POLLUTION MAP</a></li>
-          <li><a class = "nav-color black-text col" href = "#article-section">ARTICLES</a></li>
+          <li><a href="/">HOME PAGE</a></li>
+          <li><a href="/map">POLLUTION MAP</a></li>
+          <li><a class="nav-color black-text col" href="/articles">ARTICLES</a></li>
           <li><div class="nav-title">Green Speak</div></li>
-          <li><a class = "nav-color black-text col" href = "#opp-section">OPPORTUNITIES</a></li>
-          <li><a href ="/getinvolved">GET INVOLVED</a></li>
-          <!-- <li><a class = "nav-color " href = "/pictureupload">upload your picture!!</a></li> -->
-          <li><a href = "/more">more</a></li>
-          </row>
+          <li><a class="nav-color black-text col" href="/opportunities">OPPORTUNITIES</a></li>
+          <li><a href="/getinvolved">GET INVOLVED</a></li>
+          <li><a href="/more">more</a></li>
         </ul>
-    
-      </nav>
-    <h1>Latest Articles</h1>
-    
-    <% if (articles.length === 0) { %>
-        <p>No articles available.</p>
-    <% } else { %>
-        <% articles.forEach(article => { %>
-            <a href="/articles/<%= article.article_id %>" class="article-button"> 
-                <h3><%= article.title %></h3>
-                <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
-                <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
-            </a>
-        <% }); %>
-    <% } %>
-    <div><a class = "black-text col" href = "/articlesub">submit an article</a></div>
+    </nav>
+
+    <div class="article-section">
+        <h1>View Our Latest Articles</h1>
+        <p class="article-description">
+            See articles written by real people from your community. Get tips and advice on how you can prosper together 
+            and make your environment a better place. If you have something to share, create your own article. 
+            (We will fact-check all articles before allowing them to be displayed in order to prevent misinformation.)
+        </p>
+
+        <div class="articles">
+            <% if (articles.length === 0) { %>
+                <p>No articles available.</p>
+            <% } else { %>
+                <% articles.forEach(article => { %>
+                    <a href="/articles/<%= article.article_id %>" class="article-button"> 
+                        <h3><%= article.title %></h3>
+                        <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
+                        <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
+                    </a>
+                <% }); %>
+            <% } %>
+        </div>
+
+        <div class="submit-article-container">
+            <a class="submit-article" href="/articlesub">Submit an Article</a>
+        </div>
+    </div>
 </body>
 </html>
