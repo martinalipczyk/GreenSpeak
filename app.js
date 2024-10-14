@@ -97,7 +97,6 @@ app.post("/submit-article", (req, res) => {
     const { first_name, last_name, email, title, text, institution, date } = req.body;
     const asub = `INSERT INTO articles (first_name, last_name, email, title, text, institution, date) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    console.log(req.body);
     db.execute(asub, [first_name, last_name, email, title, text, institution, date], (error, result) => {
         if (error) {
             return res.status(500).send("There was an error submitting your article.");
