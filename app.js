@@ -93,18 +93,30 @@ app.get("/opportunities/:opp_id", (req, res) => {
 });
 
 app.post("/submit-article", (req, res) => {
-    console.log(req.body);
+    console.log("point 1",req.body);
     const { first_name, last_name, email, title, text, institution, date } = req.body;
     const asub = `INSERT INTO articles (first_name, last_name, email, title, text, institution, date) 
     VALUES (?, ?, ?, ?, ?, ?, ?)`;
     console.log(req.body);
     db.execute(asub, [first_name, last_name, email, title, text, institution, date], (error, result) => {
         if (error) {
-            return res.status(500).send("There was an error submitting your article.");
+            console.error("Database error:", error); // Log the error
+
+            return res.status(500).send("There was an error submitting your article im here.");
         }
-        res.send("Article submitted successfully!");
+        const getarticles = "SELECT * FROM articles ORDER BY date DESC"; 
+
+        db.execute(getarticles, (error, results) => {
+            if (error) {
+                console.error("Error fetching articles:", error);
+                return res.status(500).send("There was an error fetching articles.");
+            }
+            alert("Article submitted successfully!")
+            res.render("articles", { articles: results });
     });
 });
+});
+
 
 app.get("/nearyou", (req, res) => {
     const zipcode = req.query.zipCode;
