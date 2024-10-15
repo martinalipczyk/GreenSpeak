@@ -111,7 +111,6 @@ app.post("/submit-article", (req, res) => {
                 console.error("Error fetching articles:", error);
                 return res.status(500).send("There was an error fetching articles.");
             }
-            alert("Article submitted successfully!")
             res.render("articles", { articles: results });
     });
 });
