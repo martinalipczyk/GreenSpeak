@@ -100,7 +100,7 @@ app.post("/submit-article", (req, res) => {
     console.log(req.body);
     db.execute(asub, [first_name, last_name, email, title, text, institution, date], (error, result) => {
         if (error) {
-            console.error("Database error:", error); // Log the error
+            console.error("Database error:", error); 
 
             return res.status(500).send("There was an error submitting your article im here.");
         }
