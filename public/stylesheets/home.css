@@ -4,12 +4,12 @@ html{
 
 body {
     margin: 0;
-    
+    font-family: 'Poppins', sans-serif;
 }
 
 .first_bg{
     height:100vh;
-    background-image:url('/images/nature.jpg');
+    background-image:url('/images/nature2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -273,6 +273,27 @@ nav {
     /* margin-left:-25px; */
 }
 
+.navbar.bg-transparent {
+    background-color: transparent !important;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navbar.bg-scrolled {
+    background-color: rgba(255, 255, 255, 0.9) !important; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar .nav-link {
+    font-family: 'Poppins', sans-serif;
+    color: white; 
+    transition: color 0.3s ease-in-out; 
+}
+
+.navbar.bg-scrolled .nav-link {
+    color: black !important;
+}
+
+
 /* nav a {
     text-decoration: none; 
     color: #333; 
@@ -310,6 +331,11 @@ nav a.active {
     font-size: 40px; 
     font-weight: bold;
     color: #333; 
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     font-family: 'Times New Roman', Times, serif;
 }
+
+
 
