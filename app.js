@@ -116,32 +116,30 @@ app.post("/submit-article", (req, res) => {
 });
 });
 
-
+// app.get('/getPollutionData', (req, res) => {
+//     const zipCode = req.query.zipCode;
+//     if (zipCode) {
+//         res.render('pollutionData', { zipCode });
+//     } else {
+//         res.status(400).send('ZIP code is required.');
+//     }
+// });
+ 
 app.get('/getPollutionData', async (req, res) => {
     const zip = req.query.zipCode;
 
     try {
-        // Air Quality
+        // Fetch pollution data
         const airQuality = await fetch(`https://enviro.epa.gov/enviro/efservice/AIRDATA/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
-
-        // Water Quality
         const waterQuality = await fetch(`https://enviro.epa.gov/enviro/efservice/WATER_SYSTEM/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
-
-        // Toxics Release Inventory (TRI)
         const toxicRelease = await fetch(`https://enviro.epa.gov/enviro/efservice/TRI_FACILITY/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
-
-        // Superfund Sites
         const superfund = await fetch(`https://enviro.epa.gov/enviro/efservice/SEMS_ACTIVE_SITES/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
-
-        // Hazardous Waste Facilities
         const hazardousWaste = await fetch(`https://enviro.epa.gov/enviro/efservice/RCRAINFO/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
-
-        // Greenhouse Gas Emissions
         const greenhouseGas = await fetch(`https://enviro.epa.gov/enviro/efservice/GHG_EMITTER_FACILITY/ZIP_CODE/=/` + zip + `/json`)
             .then(res => res.json());
 
@@ -155,7 +153,8 @@ app.get('/getPollutionData', async (req, res) => {
             greenhouseGas: greenhouseGas.length > 0 ? greenhouseGas : "No greenhouse gas emission data available."
         };
 
-        res.json(data);
+        // Render pollutionData.ejs and pass the data
+        res.render("pollutionData", { data, zip });
     } catch (error) {
         console.error('Error fetching pollution data:', error);
         res.json({ error: 'Could not fetch pollution data. Please try again later.' });

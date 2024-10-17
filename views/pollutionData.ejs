@@ -4,52 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pollution Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
 </head>
 <body>
-    <h1>Pollution Information</h1>
-    <div id="results">Loading...</div>
+    <h1>Pollution Data for ZIP Code <%= zip %></h1>
 
-    <script>
-        // Function to extract the ZIP code from the URL query string
-        function getQueryParam(param) {
-            const params = new URLSearchParams(window.location.search);
-            return params.get(param);
-        }
+    <div class="section">
+        <h3>Air Quality</h3>
+        <% if (data.airQuality[0]) { %>
+            <table>
+                <tr><th>Parameter</th><th>Value</th></tr>
+                <% Object.keys(data.airQuality[0]).forEach(key => { %>
+                    <tr><td><%= key %></td><td><%= data.airQuality[0][key] %></td></tr>
+                <% }); %>
+            </table>
+        <% } else { %>
+            <p>No air quality data available.</p>
+        <% } %>
+    </div>
 
-        async function fetchPollutionData(zip) {
-            const resultsDiv = document.getElementById('results');
-            try {
-                // Fetch pollution data from the server
-                const response = await fetch(`/getPollutionData?zip=${zip}`);
-                const data = await response.json();
+    <div class="section">
+        <h3>Water Quality</h3>
+        <% if (data.waterQuality[0]) { %>
+            <table>
+                <tr><th>Parameter</th><th>Value</th></tr>
+                <% Object.keys(data.waterQuality[0]).forEach(key => { %>
+                    <tr><td><%= key %></td><td><%= data.waterQuality[0][key] %></td></tr>
+                <% }); %>
+            </table>
+        <% } else { %>
+            <p>No water quality data available.</p>
+        <% } %>
+    </div>
 
-                // Display data in resultsDiv
-                if (data.error) {
-                    resultsDiv.innerHTML = `<p>Error: ${data.error}</p>`;
-                } else {
-                    resultsDiv.innerHTML = `
-                        <h2>Pollution Data for ZIP Code ${zip}</h2>
-                        <p><strong>Air Quality:</strong> ${JSON.stringify(data.airQuality)}</p>
-                        <p><strong>Water Quality:</strong> ${JSON.stringify(data.waterQuality)}</p>
-                        <p><strong>Toxics Release:</strong> ${JSON.stringify(data.toxicRelease)}</p>
-                        <p><strong>Superfund Sites:</strong> ${JSON.stringify(data.superfund)}</p>
-                        <p><strong>Hazardous Waste:</strong> ${JSON.stringify(data.hazardousWaste)}</p>
-                        <p><strong>Greenhouse Gas Emissions:</strong> ${JSON.stringify(data.greenhouseGas)}</p>
-                    `;
-                }
-            } catch (error) {
-                console.error('Error fetching pollution data:', error);
-                resultsDiv.innerHTML = `<p>Could not fetch data. Please try again later.</p>`;
-            }
-        }
+    <!-- Repeat similar sections for other types of data -->
 
-        // Get ZIP code from the query string and fetch pollution data
-        const zip = getQueryParam('zip');
-        if (zip) {
-            fetchPollutionData(zip);
-        } else {
-            document.getElementById('results').innerHTML = '<p>No ZIP code provided.</p>';
-        }
-    </script>
 </body>
 </html>
