@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollution Data</title>
+</head>
+<body>
+    <h1>Pollution Information</h1>
+    <div id="results">Loading...</div>
+
+    <script>
+        // Function to extract the ZIP code from the URL query string
+        function getQueryParam(param) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        async function fetchPollutionData(zip) {
+            const resultsDiv = document.getElementById('results');
+            try {
+                // Fetch pollution data from the server
+                const response = await fetch(`/getPollutionData?zip=${zip}`);
+                const data = await response.json();
+
+                // Display data in resultsDiv
+                if (data.error) {
+                    resultsDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    resultsDiv.innerHTML = `
+                        <h2>Pollution Data for ZIP Code ${zip}</h2>
+                        <p><strong>Air Quality:</strong> ${JSON.stringify(data.airQuality)}</p>
+                        <p><strong>Water Quality:</strong> ${JSON.stringify(data.waterQuality)}</p>
+                        <p><strong>Toxics Release:</strong> ${JSON.stringify(data.toxicRelease)}</p>
+                        <p><strong>Superfund Sites:</strong> ${JSON.stringify(data.superfund)}</p>
+                        <p><strong>Hazardous Waste:</strong> ${JSON.stringify(data.hazardousWaste)}</p>
+                        <p><strong>Greenhouse Gas Emissions:</strong> ${JSON.stringify(data.greenhouseGas)}</p>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error fetching pollution data:', error);
+                resultsDiv.innerHTML = `<p>Could not fetch data. Please try again later.</p>`;
+            }
+        }
+
+        // Get ZIP code from the query string and fetch pollution data
+        const zip = getQueryParam('zip');
+        if (zip) {
+            fetchPollutionData(zip);
+        } else {
+            document.getElementById('results').innerHTML = '<p>No ZIP code provided.</p>';
+        }
+    </script>
+</body>
+</html>
