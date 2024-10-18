@@ -4,6 +4,11 @@ body {
     font-family: 'Poppins', sans-serif; /* Set a default font */
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
 #navlogo {
     margin-right: 10px; 
     height: 50px; 
@@ -62,9 +67,6 @@ nav {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.homelink {
-    width: 106.61px;
-}
 
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;
