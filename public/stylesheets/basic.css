@@ -71,7 +71,7 @@ nav {
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;
     color: black; /* Default color when transparent */
-    transition: color 0.3s ease-in-out; /* Smooth transition */
+    transition: color 1s ease-in-out; /* Smooth transition */
 }
 
 .navbar.bg-transparent {
