@@ -8,7 +8,14 @@ body {
     width: 106.61px;
 }
 
-.first_bg{
+.navbar .nav-link {
+    font-family: 'Poppins', sans-serif;
+    /* color: rgb(255, 255, 255);  */
+    color: white;
+    transition: color 0.3s ease-in-out; 
+}
+
+.first_bg{  
     height:100vh;
     background-image:url('/images/nature2.jpg');
     background-size: cover;
@@ -17,7 +24,8 @@ body {
 }
 
 #second_bg {
-    background-color: rgb(218, 231, 223);
+    /* background-color: rgb(218, 231, 223); */
+    background-color: #819058;
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -60,7 +68,8 @@ body {
 }
 
 #third_bg {
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgba(231, 227, 216, 1);
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -79,8 +88,6 @@ body {
     font-size: 18px; 
     color: #333; 
     line-height: 1.5;
-    
-
 }
 
 #third_bg img {
@@ -143,15 +150,14 @@ body {
 }
 
 #article-section {
-    background-color: rgb(218, 231, 223);
+    /* background-color: rgb(218, 231, 223); */
+    background-color: #819058;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: left; 
 }
-
-
 
 #article-section h1 {
     font-size: 36px; 
@@ -167,15 +173,14 @@ body {
 }
 
 #opp-section {
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgba(231, 227, 216, 1);
     padding: 50px 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: left; 
 }
-
-
 
 #opp-section h1 {
     font-size: 36px; 
@@ -189,10 +194,6 @@ body {
     color: #333; 
     line-height: 1.5;
 }
-
-
-
-
 
 #zipCodeForm {
     background-color: rgba(255, 255, 255, 0.8); 
@@ -236,7 +237,8 @@ button {
     width: 100%; 
     padding: 15px; 
     font-size: 18px; 
-    background-color: #4CAF50; 
+    /* background-color: #4CAF50;  */
+    background-color: rgba(53,76,62,255);
     color: white; 
     border: none; 
     border-radius: 5px; 
@@ -247,81 +249,6 @@ button {
 button:hover {
     background-color: #45a049; 
 }
-
-/* ul {
-    list-style-type: none; 
-    margin: 0; 
-    padding: 0; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-li {
-    margin-right: 20px; 
-} */
-
-/* nav {
-    background-color: rgb(255,255,255); 
-    display: flex;
-    justify-content: space_around; 
-    align-items: center; 
-    height: 80px; 
-    padding: 0 20px; 
-    position:fixed;
-    width:100%;
-    border-bottom: #000000;
-} */
-
-.navbar .nav-link {
-    font-family: 'Poppins', sans-serif;
-    color: rgb(255, 255, 255); 
-    transition: color 0.3s ease-in-out; 
-}
-
-
-/* nav a {
-    text-decoration: none; 
-    color: #333; 
-    padding: 10px 20px; 
-    background-color: transparent; 
-    border: none; 
-    border-radius: 5px; 
-
-    font-size: 16px; 
-    font-family: 'Times New Roman', Times, serif; 
-    transition: color 0.3s; 
-}
-
-nav a:hover {
-    background-color: #edf4ed; 
-    transition:color 0.3s;
-}
-
-nav a.active {
-    background-color: #4CAF50; 
-    color: white; 
-} */
-
-/* #navlogo {
-    margin-right: 10px; 
-    height: 50px; 
-    width: 50px; 
-} */
-
-/* .nav-title {
-    border: 2px solid #000000; 
-    padding: 5px 10px; 
-    border-radius: 2px; 
-    background-color: white; 
-    font-size: 40px; 
-    font-weight: bold;
-    color: #333; 
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Times New Roman', Times, serif;
-} */
 
 
 
