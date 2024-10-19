@@ -19,51 +19,42 @@
   <p>PM2.5: <%= dataList.airQualityData.pollutants.pm2_5 %> µg/m³</p>
   <p>PM10: <%= dataList.airQualityData.pollutants.pm10 %> µg/m³</p>
   <p>Ozone: <%= dataList.airQualityData.pollutants.ozone %> µg/m³</p>
+  <p>So?: <%= dataList.airQualityData.health_recommendations.all %> </p>
 <% } %>
 
 <h2>Noise Data:</h2>
 <% if (typeof dataList.noiseData === 'string') { %>
   <p><%= dataList.noiseData %></p>
 <% } else { %>
-  <p>Noise Level: <%= dataList.noiseData.noiseLevel %> dB</p>
+  <p>Noise Index: <%= dataList.noiseData.noiseLevel.index.value %> dB</p>
+  <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
 <% } %>
 
 <h2>Pollen Data:</h2>
 <% if (typeof dataList.pollenData === 'string') { %>
   <p><%= dataList.pollenData %></p>
 <% } else { %>
-  <ul>
-    <li>Tree Pollen: <%= dataList.pollenData.tree %></li>
-    <li>Grass Pollen: <%= dataList.pollenData.grass %></li>
-    <li>Weed Pollen: <%= dataList.pollenData.weed %></li>
-  </ul>
+  <p>Pollen Index: <%= dataList.pollenData.index.value %> dB</p>
+  <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %> dB</p>
+
+  <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
 <% } %>
 
 <h2>UV Index:</h2>
 <% if (typeof dataList.uvData === 'string') { %>
   <p><%= dataList.uvData %></p>
 <% } else { %>
-  <p>UV Index: <%= dataList.uvData.uvIndex %></p>
-  <p>UV Risk: <%= dataList.uvData.risk %></p>
+  <p>UV Index: <%= dataList.uvData.index.value %></p>
+  <p>So?: <%= dataList.uvData.health_recommendations.all%></p>
 <% } %>
 
 <h2>Water Quality:</h2>
 <% if (typeof dataList.waterData === 'string') { %>
   <p><%= dataList.waterData %></p>
 <% } else { %>
-  <p>Water Contaminants: <%= dataList.waterData.contaminants %></p>
-  <p>pH Level: <%= dataList.waterData.ph %></p>
+  <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
+  <p>So?: <%= dataList.waterData.health_recommendations.all%></p>
 <% } %>
-
-<h2>Weather Data:</h2>
-<% if (typeof dataList.weatherData === 'string') { %>
-  <p><%= dataList.weatherData %></p>
-<% } else { %>
-  <p>Temperature: <%= dataList.weatherData.temperature %> °C</p>
-  <p>Humidity: <%= dataList.weatherData.humidity %> %</p>
-  <p>Wind Speed: <%= dataList.weatherData.windSpeed %> km/h</p>
-<% } %>
-    </div>
 
 </body>
 </html>

@@ -124,8 +124,7 @@ const fetchEnvironmentalData = async (latitude, longitude) => {
         { key: 'noise', url: 'https://api.meersens.com/environment/public/noise/current' },
         { key: 'pollen', url: 'https://api.meersens.com/environment/public/pollen/current' },
         { key: 'uv', url: 'https://api.meersens.com/environment/public/uv/current' },
-        { key: 'water', url: 'https://api.meersens.com/environment/public/water/current' },
-        { key: 'weather', url: 'https://api.meersens.com/environment/public/weather/current' }
+        { key: 'water', url: 'https://api.meersens.com/environment/public/water/current' }
     ];
 
     // Create promises for all API calls
@@ -134,7 +133,8 @@ const fetchEnvironmentalData = async (latitude, longitude) => {
             const response = await axios.get(endpoint.url, {
                 params: {
                     lat: latitude,
-                    lng: longitude
+                    lng: longitude,
+                    health_recomendations: true
                 },
                 headers: {
                     'apikey': meersensKey
@@ -180,8 +180,7 @@ app.get('/getPollutionData', async (req, res) => {
                 noiseData: environmentalData.noise || 'No noise data available for this area.',
                 pollenData: environmentalData.pollen || 'No pollen data available for this area.',
                 uvData: environmentalData.uv || 'No UV data available for this area.',
-                waterData: environmentalData.water || 'No water quality data available for this area.',
-                weatherData: environmentalData.weather || 'No weather data available for this area.'
+                waterData: environmentalData.water || 'No water quality data available for this area.'
             }
 
             console.log(datals)
