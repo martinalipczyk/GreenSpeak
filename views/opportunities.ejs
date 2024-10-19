@@ -56,7 +56,7 @@
                                 <h5 class="card-title"><%= opportunity.event %></h5>
                                 <p class="card-text"><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
                                 <p class="card-text"><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
-                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-primary">More Information</a>
+                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-success">More Information</a>
                             </div>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
     <script>
         window.addEventListener('scroll', function() {
             let navbar = document.getElementById('mainNav');
-            if (window.scrollY > 50) {  // When the scroll is greater than 50px from the top
+            if (window.scrollY > 20) {  // When the scroll is greater than 50px from the top
                 navbar.classList.add('bg-scrolled');
                 navbar.classList.remove('bg-transparent');
             } else {
