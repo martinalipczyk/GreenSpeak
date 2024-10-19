@@ -3,9 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollution Data for zipcode</title>
+    <title>Pollution Data for ZIP Code <%= zipCode %></title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Environmental Data for ZIP Code: <%= zipCode %></h1>
+
+<h2>Air Quality:</h2>
+<% if (typeof airQualityData === 'string') { %>
+  <p><%= airQualityData %></p>
+<% } else { %>
+  <p>Air Quality Index: <%= airQualityData.data.airQualityIndex %></p>
+  <p>PM2.5: <%= airQualityData.data.pollutants.pm2_5 %> µg/m³</p>
+  <p>PM10: <%= airQualityData.data.pollutants.pm10 %> µg/m³</p>
+  <p>Ozone: <%= airQualityData.data.pollutants.ozone %> µg/m³</p>
+<% } %>
+
+<h2>Noise Data:</h2>
+<% if (typeof noiseData === 'string') { %>
+  <p><%= noiseData %></p>
+<% } else { %>
+  <p>Noise Level: <%= noiseData.data.noiseLevel %> dB</p>
+<% } %>
+
+<h2>Pollen Data:</h2>
+<% if (typeof pollenData === 'string') { %>
+  <p><%= pollenData %></p>
+<% } else { %>
+  <ul>
+    <li>Tree Pollen: <%= pollenData.data.tree %></li>
+    <li>Grass Pollen: <%= pollenData.data.grass %></li>
+    <li>Weed Pollen: <%= pollenData.data.weed %></li>
+  </ul>
+<% } %>
+
+<h2>UV Index:</h2>
+<% if (typeof uvData === 'string') { %>
+  <p><%= uvData %></p>
+<% } else { %>
+  <p>UV Index: <%= uvData.data.uvIndex %></p>
+  <p>UV Risk: <%= uvData.data.risk %></p>
+<% } %>
+
+<h2>Water Quality:</h2>
+<% if (typeof waterData === 'string') { %>
+  <p><%= waterData %></p>
+<% } else { %>
+  <p>Water Contaminants: <%= waterData.data.contaminants %></p>
+  <p>pH Level: <%= waterData.data.ph %></p>
+<% } %>
+
+<h2>Weather Data:</h2>
+<% if (typeof weatherData === 'string') { %>
+  <p><%= weatherData %></p>
+<% } else { %>
+  <p>Temperature: <%= weatherData.data.temperature %> °C</p>
+  <p>Humidity: <%= weatherData.data.humidity %> %</p>
+  <p>Wind Speed: <%= weatherData.data.windSpeed %> km/h</p>
+<% } %>
+    </div>
+
 </body>
 </html>
