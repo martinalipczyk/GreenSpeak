@@ -25,26 +25,18 @@
         </div>
     </nav>
 
-    <h2 class = "page-heading px-5">Opportunities and Events</h2>
+    <div class = "container">
+        <h2 class = "page-heading">Opportunities and Events</h2>
 
-    <div class="submit-article-container px-5">
-        <div>
-            <button type = "button" class = "btn btn-success mb-3" id="submit-article-btn">Post an Opportunity</button>
+        <div class="submit-article-container">
+            <div>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#articleModal">
+                    Post an Opportunity
+                </button>
+            </div>
         </div>
     </div>
-    
-    <!-- <% if (opportunities.length === 0) { %>
-        <p>No opportunities available.</p>
-    <% } else { %>
-        <% opportunities.forEach(opportunity => { %>
-            <a href="/opportunities/<%= opportunity.opp_id %>" class="opportunity-button">
-                <h3><%= opportunity.event %></h3>
-                <p><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
-                <p><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
-            </a>
-        <% }); %>
-    <% } %> -->
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row">
             <% if (opportunities.length === 0) { %>
                 <p>No opportunities available.</p>
@@ -56,7 +48,7 @@
                                 <h5 class="card-title"><%= opportunity.event %></h5>
                                 <p class="card-text"><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
                                 <p class="card-text"><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
-                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-success">More Information</a>
+                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-outline-success">More Information</a>
                             </div>
                         </div>
                     </div>
@@ -65,45 +57,51 @@
         </div>
     </div>
     
-
-    <div id="articleModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Submit an Event</h2>
-            <form id="articleForm" action = "/submit-opp" method = "POST">
-                <div class="input-field">
-                    <label for="first_name">First Name</label>
-                    <input type="text" id="first_name" name="first_name" required>
+    <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleModalLabel">Submit an Event</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="input-field">
-                    <label for="last_name">Last Name</label>
-                    <input type="text" id="last_name" name="last_name" required>
+                <div class="modal-body">
+                    <form id="articleForm" action="/submit-opp" method="POST">
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="organization" class="form-label">Organization</label>
+                            <input type="text" class="form-control" id="organization" name="organization">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email (used to sign up)</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="event" class="form-label">Event/Opportunity</label>
+                            <input type="text" class="form-control" id="event" name="event" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Event Date</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Post Event</button>
+                    </form>
+                    <p id="formP" class="mt-3 text-center">To prevent misinformation, all submissions will be reviewed before being posted.</p>
                 </div>
-                <div class="input-field">
-                  <label for="organization">Organization</label>
-                  <input type="text" id="organization" name="organization">
-              </div>
-                <div class="input-field">
-                  <label for="email">Email (used to sign up)</label>
-                  <input type="text" id="email" name="email" required>
-              </div>
-                <div class="input-field">
-                    <label for="event">Event/Opportunity</label>
-                    <input type="text" id="event" name="event" required>
-                </div>
-                <div class="input-field">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" required></textarea>
-                </div>
-                <div class="input-field">
-                    <label for="date">Event Date</label>
-                    <input type="date" id="date" name="date" required>
-                </div>
-                <button type="submit" class="submit-btn">Post Event</button>
-            </form>
-            <p id = "formP">To prevent misinformation, all submissions will be reviewed before being posted.</p>
+            </div>
         </div>
     </div>
+
     <script>
         window.addEventListener('scroll', function() {
             let navbar = document.getElementById('mainNav');
