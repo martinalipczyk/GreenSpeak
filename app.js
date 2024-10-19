@@ -66,6 +66,19 @@ app.get("/oppsub", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "oppsub.html"));
 });
 
+// app.post("/submit-opp", (req, res) => {
+//     console.log(req.body);
+//     const { first_name, last_name, email, event, description, organization, date } = req.body;
+//     const osub = `INSERT INTO opportunities (first_name, last_name, email, event, description, organization, date) 
+//     VALUES (?, ?, ?, ?, ?, ?, ?)`;
+
+//     db.execute(osub, [first_name, last_name, email, event, description, organization, date], (error, result) => {
+//         if (error) {
+//             return res.status(500).send("There was an error submitting your event.");
+//         }
+//         res.send("Event submitted successfully!");
+//     });
+// });
 app.post("/submit-opp", (req, res) => {
     console.log(req.body);
     const { first_name, last_name, email, event, description, organization, date } = req.body;
@@ -74,11 +87,23 @@ app.post("/submit-opp", (req, res) => {
 
     db.execute(osub, [first_name, last_name, email, event, description, organization, date], (error, result) => {
         if (error) {
+            console.error("Database error:", error); 
             return res.status(500).send("There was an error submitting your event.");
         }
-        res.send("Event submitted successfully!");
+
+        // After successfully inserting, fetch all opportunities
+        const sql = "SELECT * FROM opportunities ORDER BY date DESC";
+        db.execute(sql, (error, results) => {
+            if (error) {
+                console.error("Error fetching opportunities:", error);
+                return res.status(500).send("There was an error fetching opportunities.");
+            }
+            // Render the opportunities page with the updated list
+            res.render("opportunities", { opportunities: results });
+        });
     });
 });
+
 
 app.get("/opportunities/:opp_id", (req, res) => {
     const oppId = req.params.opp_id; 
