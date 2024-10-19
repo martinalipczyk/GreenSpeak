@@ -3,63 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollution Data for ZIP Code <%= zipCode %></title>
+    <title>Pollution Data for ZIP Code <%= dataList.zipCode %></title>
 </head>
 <body>
     <div class="container">
-        <h1>Environmental Data for ZIP Code: <%= zipCode %></h1>
+        <h1>Environmental Data for ZIP Code: <%= dataList.zipCode %></h1>
+
+        <%console.log('Air Quality Data:', dataList.airQualityData.data)%>
 
 <h2>Air Quality:</h2>
-<% if (typeof airQualityData === 'string') { %>
-  <p><%= airQualityData %></p>
+<% if (typeof dataList.airQualityData === 'string') { %>
+  <p><%= dataList.airQualityData %></p>
 <% } else { %>
-  <p>Air Quality Index: <%= airQualityData.data.airQualityIndex %></p>
-  <p>PM2.5: <%= airQualityData.data.pollutants.pm2_5 %> µg/m³</p>
-  <p>PM10: <%= airQualityData.data.pollutants.pm10 %> µg/m³</p>
-  <p>Ozone: <%= airQualityData.data.pollutants.ozone %> µg/m³</p>
+  <p>Air Quality Index: <%= dataList.airQualityData.index.value %></p>
+  <p>PM2.5: <%= dataList.airQualityData.pollutants.pm2_5 %> µg/m³</p>
+  <p>PM10: <%= dataList.airQualityData.pollutants.pm10 %> µg/m³</p>
+  <p>Ozone: <%= dataList.airQualityData.pollutants.ozone %> µg/m³</p>
 <% } %>
 
 <h2>Noise Data:</h2>
-<% if (typeof noiseData === 'string') { %>
-  <p><%= noiseData %></p>
+<% if (typeof dataList.noiseData === 'string') { %>
+  <p><%= dataList.noiseData %></p>
 <% } else { %>
-  <p>Noise Level: <%= noiseData.data.noiseLevel %> dB</p>
+  <p>Noise Level: <%= dataList.noiseData.noiseLevel %> dB</p>
 <% } %>
 
 <h2>Pollen Data:</h2>
-<% if (typeof pollenData === 'string') { %>
-  <p><%= pollenData %></p>
+<% if (typeof dataList.pollenData === 'string') { %>
+  <p><%= dataList.pollenData %></p>
 <% } else { %>
   <ul>
-    <li>Tree Pollen: <%= pollenData.data.tree %></li>
-    <li>Grass Pollen: <%= pollenData.data.grass %></li>
-    <li>Weed Pollen: <%= pollenData.data.weed %></li>
+    <li>Tree Pollen: <%= dataList.pollenData.tree %></li>
+    <li>Grass Pollen: <%= dataList.pollenData.grass %></li>
+    <li>Weed Pollen: <%= dataList.pollenData.weed %></li>
   </ul>
 <% } %>
 
 <h2>UV Index:</h2>
-<% if (typeof uvData === 'string') { %>
-  <p><%= uvData %></p>
+<% if (typeof dataList.uvData === 'string') { %>
+  <p><%= dataList.uvData %></p>
 <% } else { %>
-  <p>UV Index: <%= uvData.data.uvIndex %></p>
-  <p>UV Risk: <%= uvData.data.risk %></p>
+  <p>UV Index: <%= dataList.uvData.uvIndex %></p>
+  <p>UV Risk: <%= dataList.uvData.risk %></p>
 <% } %>
 
 <h2>Water Quality:</h2>
-<% if (typeof waterData === 'string') { %>
-  <p><%= waterData %></p>
+<% if (typeof dataList.waterData === 'string') { %>
+  <p><%= dataList.waterData %></p>
 <% } else { %>
-  <p>Water Contaminants: <%= waterData.data.contaminants %></p>
-  <p>pH Level: <%= waterData.data.ph %></p>
+  <p>Water Contaminants: <%= dataList.waterData.contaminants %></p>
+  <p>pH Level: <%= dataList.waterData.ph %></p>
 <% } %>
 
 <h2>Weather Data:</h2>
-<% if (typeof weatherData === 'string') { %>
-  <p><%= weatherData %></p>
+<% if (typeof dataList.weatherData === 'string') { %>
+  <p><%= dataList.weatherData %></p>
 <% } else { %>
-  <p>Temperature: <%= weatherData.data.temperature %> °C</p>
-  <p>Humidity: <%= weatherData.data.humidity %> %</p>
-  <p>Wind Speed: <%= weatherData.data.windSpeed %> km/h</p>
+  <p>Temperature: <%= dataList.weatherData.temperature %> °C</p>
+  <p>Humidity: <%= dataList.weatherData.humidity %> %</p>
+  <p>Wind Speed: <%= dataList.weatherData.windSpeed %> km/h</p>
 <% } %>
     </div>
 
