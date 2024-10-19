@@ -10,18 +10,6 @@
     <link rel="stylesheet" href="/stylesheets/opportunities.css">
 </head>
 <body>
-    
-    <!-- <nav>
-        <ul>
-            <li><a href="/">HOME PAGE</a></li>
-            <li><a href="/map">POLLUTION MAP</a></li>
-            <li><a href="/articles">ARTICLES</a></li>
-            <li><div class="nav-title">Green Speak</div></li>
-            <li><a href="/opportunities">OPPORTUNITIES</a></li>
-            <li><a href="/getinvolved">GET INVOLVED</a></li>
-            <li><a href="/more">more</a></li>
-        </ul>
-    </nav> -->
     <nav id = "mainNav" class = "navbar navbar-expand-sm navbar-light fixed-top">
         <div class = "container">
           <ul class = "navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
@@ -37,9 +25,15 @@
         </div>
     </nav>
 
-    <h2>Opportunities and Events</h2>
+    <h2 class = "page-heading px-5">Opportunities and Events</h2>
 
-    <% if (opportunities.length === 0) { %>
+    <div class="submit-article-container px-5">
+        <div>
+            <button type = "button" class = "btn btn-success mb-3" id="submit-article-btn">Post an Opportunity</button>
+        </div>
+    </div>
+    
+    <!-- <% if (opportunities.length === 0) { %>
         <p>No opportunities available.</p>
     <% } else { %>
         <% opportunities.forEach(opportunity => { %>
@@ -49,14 +43,28 @@
                 <p><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
             </a>
         <% }); %>
-    <% } %>
-
-    <div class="submit-article-container">
-        <div>
-            <button id="submit-article-btn" class="black-text col">Post an Opportunity</button>
+    <% } %> -->
+    <div class="container mt-5">
+        <div class="row">
+            <% if (opportunities.length === 0) { %>
+                <p>No opportunities available.</p>
+            <% } else { %>
+                <% opportunities.forEach(opportunity => { %>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= opportunity.event %></h5>
+                                <p class="card-text"><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
+                                <p class="card-text"><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
+                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-primary">More Information</a>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } %>
         </div>
     </div>
-</div>
+    
 
     <div id="articleModal" class="modal">
         <div class="modal-content">
