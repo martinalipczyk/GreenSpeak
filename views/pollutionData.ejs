@@ -3,68 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollution Data</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-    </style>
+    <title>Pollution Data for zipcode</title>
 </head>
 <body>
-    <h1>Pollution Data for ZIP Code <%= zip %></h1>
-
-    <div class="section">
-        <h3>Air Quality</h3>
-        <% if (data.airQuality[0]) { %>
-            <table>
-                <tr><th>Parameter</th><th>Value</th></tr>
-                <% Object.keys(data.airQuality[0]).forEach(key => { %>
-                    <tr><td><%= key %></td><td><%= data.airQuality[0][key] %></td></tr>
-                <% }); %>
-            </table>
-        <% } else { %>
-            <p>No air quality data available.</p>
-        <% } %>
-    </div>
-
-    <div class="section">
-        <h3>Water Quality</h3>
-        <% if (data.waterQuality[0]) { %>
-            <table>
-                <tr><th>Parameter</th><th>Value</th></tr>
-                <% Object.keys(data.waterQuality[0]).forEach(key => { %>
-                    <tr><td><%= key %></td><td><%= data.waterQuality[0][key] %></td></tr>
-                <% }); %>
-            </table>
-        <% } else { %>
-            <p>No water quality data available.</p>
-        <% } %>
-    </div>
-
-    <!-- Repeat similar sections for other types of data -->
-
+    
 </body>
 </html>

@@ -126,60 +126,8 @@ app.post("/submit-article", (req, res) => {
 // });
  
 app.get('/getPollutionData', async (req, res) => {
-    const zip = req.query.zipCode;
-
-    try {
-        // Fetch pollution data
-        const airQuality = await fetch(`https://enviro.epa.gov/enviro/efservice/AIRDATA/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-        const waterQuality = await fetch(`https://enviro.epa.gov/enviro/efservice/WATER_SYSTEM/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-        const toxicRelease = await fetch(`https://enviro.epa.gov/enviro/efservice/TRI_FACILITY/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-        const superfund = await fetch(`https://enviro.epa.gov/enviro/efservice/SEMS_ACTIVE_SITES/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-        const hazardousWaste = await fetch(`https://enviro.epa.gov/enviro/efservice/RCRAINFO/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-        const greenhouseGas = await fetch(`https://enviro.epa.gov/enviro/efservice/GHG_EMITTER_FACILITY/ZIP_CODE/=/` + zip + `/json`)
-            .then(res => res.json());
-
-        // Build the response data
-        const data = {
-            airQuality: airQuality[0] ? airQuality : "No air quality data available.",
-            waterQuality: waterQuality[0] ? waterQuality : "No water quality data available.",
-            toxicRelease: toxicRelease.length > 0 ? toxicRelease : "No toxic release data available.",
-            superfund: superfund.length > 0 ? superfund : "No superfund site data available.",
-            hazardousWaste: hazardousWaste.length > 0 ? hazardousWaste : "No hazardous waste data available.",
-            greenhouseGas: greenhouseGas.length > 0 ? greenhouseGas : "No greenhouse gas emission data available."
-        };
-
-        // Render pollutionData.ejs and pass the data
-        res.render("pollutionData", { data, zip });
-    } catch (error) {
-        console.error('Error fetching pollution data:', error);
-        res.json({ error: 'Could not fetch pollution data. Please try again later.' });
-    }
+    
 });
-
-
-// app.get("/nearyou", (req, res) => {
-//     const zipcode = req.query.zipCode;
-//     const airNowUrl = `http://www.airnowapi.org/aq/observation/zipCode/current/?format=application/json&zipCode=${zipcode}&distance=25&API_KEY=${airNowApiKey}`;
-
-//     axios.get(airNowUrl)
-//         .then(response => {
-//             if (response.data && response.data.length > 0) {
-//                 const airData = response.data[0]; // Get the first result
-//                 res.render("nearyou", { airData, zipcode, error: null });
-//             } else {
-//                 res.render("nearyou", { airData: null, zipcode, error: "No data available for this ZIP code." });
-//             }
-//         })
-//         .catch(error => {
-//             console.error("Error fetching air quality data:", error);
-//             res.render("nearyou", { airData: null, zipcode, error: "Unable to fetch data. Please try again." });
-//         });
-// });
 
 
 app.listen(port, () => {
