@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif; /* Set a default font */
+    padding-top: 80px;
 }
 
 html {

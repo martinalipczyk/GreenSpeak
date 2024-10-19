@@ -3,16 +3,16 @@ html {
 }
 
 body {
-    padding-top: 100px;
     font-family: Arial, sans-serif;
-    margin-left: 20px;
-    margin-right: 20px;
+    padding-left: 80px;
+    padding-right: 80px;
 }
 
 h2 {
     margin-bottom: 20px;
 }
-.opportunity-button {
+
+/* .opportunity-button {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
@@ -25,28 +25,4 @@ h2 {
 
 .opportunity-button:hover {
     background-color: #218838;
-}
-
-button {
-    width: 100%; 
-    padding: 15px; 
-    font-size: 18px; 
-    background-color: #4CAF50; 
-    color: white; 
-    border: none; 
-    border-radius: 5px; 
-    margin-top: 10px; 
-    cursor: pointer; 
-}
-
-button:hover {
-    background-color: #45a049; 
-}
-
-/* .nav-title {
-    font-size: 40px;
-    color: #000000;
-    font-weight: bold;
-    margin-top: 3px;
 } */
-

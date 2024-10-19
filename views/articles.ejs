@@ -23,36 +23,92 @@
           </ul>
         </div>
     </nav>
-    <div class="article-section">
+    <div class = "container" >
         <h1>View Our Latest Articles</h1>
         <p class="article-description">
             See articles written by real people from your community. Get tips and advice on how you can prosper together 
             and make your environment a better place. If you have something to share, create your own article. 
             (We will fact-check all articles before allowing them to be displayed in order to prevent misinformation.)
         </p>
+    </div>
 
-        <div class="articles">
+    <div class="container submit-article-container">
+        <div>
+            <!-- <button type = "button" class = "btn btn-success" id="submit-article-btn" class="black-text col">Submit an Article</button> -->
+
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#articleModal">
+                Submit an Article
+            </button>
+        </div>
+    </div>
+
+    <div class="container mt-4 articles">
+        <div class="row">
             <% if (articles.length === 0) { %>
                 <p>No articles available.</p>
             <% } else { %>
                 <% articles.forEach(article => { %>
-                    <a href="/articles/<%= article.article_id %>" class="article-button"> 
-                        <h3><%= article.title %></h3>
-                        <p><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
-                        <p><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
-                    </a>
+                    <div class="col-md-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= article.title %></h5>
+                                <p class="card-text"><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
+                                <p class="card-text"><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
+                                <a href="/articles/<%= article.article_id %>" class="btn btn-outline-success">More Information</a>
+                            </div>
+                        </div>
+                    </div>
                 <% }); %>
             <% } %>
         </div>
+    </div>
 
-        <div class="submit-article-container">
-            <div>
-                <button id="submit-article-btn" class="black-text col">Submit an Article</button>
+    <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="articleModalLabel">Submit an Article</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="articleForm" action="/submit-article" method="POST">
+                        <div class="mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Article Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Text</label>
+                            <textarea class="form-control" id="text" name="text" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="institution" class="form-label">Institution</label>
+                            <input type="text" class="form-control" id="institution" name="institution">
+                        </div>
+                        <div class="mb-3">
+                            <label for="date" class="form-label">Date Finished</label>
+                            <input type="date" class="form-control" id="date" name="date" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit Article</button>
+                    </form>
+                    <p id="formP" class="mt-3">To prevent misinformation, all submissions will be reviewed before being posted.</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="articleModal" class="modal">
+    <!-- <div id="articleModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Submit an Article</h2>
@@ -89,11 +145,12 @@
             </form>
             <p id = "formP">To prevent misinformation, all submissions will be reviewed before being posted.</p>
         </div>
-    </div>
+    </div> -->
+    
     <script>
         window.addEventListener('scroll', function() {
             let navbar = document.getElementById('mainNav');
-            if (window.scrollY > 50) {  // When the scroll is greater than 50px from the top
+            if (window.scrollY > 20) {  // When the scroll is greater than 50px from the top
                 navbar.classList.add('bg-scrolled');
                 navbar.classList.remove('bg-transparent');
             } else {
