@@ -6,7 +6,7 @@ const path = require("path");
 const db = require("./db/db_connection");
 const axios = require("axios");
 const airNowApiKey = process.env.AIRNOW_API_KEY;
-const meersensKey = process.env.MEERSENSKEY;
+const meersensKey = process.env.MEERSENS_API_KEY;
 
 
 app.use(logger("dev"));
@@ -162,7 +162,7 @@ const fetchEnvironmentalData = async (latitude, longitude) => {
                     lng: longitude
                 },
                 headers: {
-                    'apikey': process.env.MEERSENS_API_KEY
+                    'apikey': meersensKey
                 }
             });
             return { [endpoint.key]: response.data }; // Return data if successful
@@ -199,8 +199,7 @@ app.get('/getPollutionData', async (req, res) => {
             // Fetch all environmental data
             const environmentalData = await fetchEnvironmentalData(latitude, longitude);
 
-            // Render the template and pass the data, providing fallback for unavailable data
-            res.render('pollutionData', {
+            const datals = {
                 zipCode,
                 airQualityData: environmentalData.airQuality || 'No air quality data available for this area.',
                 noiseData: environmentalData.noise || 'No noise data available for this area.',
@@ -208,7 +207,11 @@ app.get('/getPollutionData', async (req, res) => {
                 uvData: environmentalData.uv || 'No UV data available for this area.',
                 waterData: environmentalData.water || 'No water quality data available for this area.',
                 weatherData: environmentalData.weather || 'No weather data available for this area.'
-            });
+            }
+
+            console.log(datals)
+            // Render the template and pass the data, providing fallback for unavailable data
+            res.render('pollutionData', {dataList: datals});
 
         } else {
             res.status(500).send('Unable to get coordinates for the provided ZIP code.');
