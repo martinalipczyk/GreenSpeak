@@ -41,6 +41,7 @@ nav {
     /* margin-left:-25px; */
 }
 
+
 .nav-title {
     padding: 5px 10px; 
     margin-top: 3px;
@@ -58,8 +59,6 @@ nav {
 .title-scrolled {
     color: rgba(53,76,62,255); /* Change font color when scrolled */
 }
-
-
 
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;

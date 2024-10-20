@@ -8,12 +8,22 @@ body {
     width: 106.61px;
 }
 
+
+.nav-title {
+    font-weight: bold;      /* Make the title bold */    /* Adjust font size as needed */
+    text-align: center;     /* Center text */
+    flex-grow: 1;           /* Allow it to take up remaining space */
+    display: flex;          /* Use flex for proper centering */
+    justify-content: center;/* Center the title text within its space */
+}
+
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;
     /* color: rgb(255, 255, 255);  */
     color: white;
     transition: color 0.3s ease-in-out; 
 }
+
 
 .first_bg{  
     height:100vh;
