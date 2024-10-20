@@ -12,3 +12,15 @@ body {
 h2 {
     margin-bottom: 20px;
 }
+
+.card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.05); 
+    z-index: 2; 
+}
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
