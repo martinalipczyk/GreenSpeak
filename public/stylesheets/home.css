@@ -6,16 +6,7 @@ body {
 
 #homelink {
     width: 106.61px;
-}
-
-
-.nav-title {
-    font-weight: bold;      /* Make the title bold */    /* Adjust font size as needed */
-    text-align: center;     /* Center text */
-    flex-grow: 1;           /* Allow it to take up remaining space */
-    display: flex;          /* Use flex for proper centering */
-    justify-content: center;/* Center the title text within its space */
-}
+}  
 
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;
@@ -24,10 +15,9 @@ body {
     transition: color 0.3s ease-in-out; 
 }
 
-
 .first_bg{  
     height:100vh;
-    background-image:url('/images/nature2.jpg');
+    background-image:url('/images/nature4.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

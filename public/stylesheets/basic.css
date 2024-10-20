@@ -16,6 +16,10 @@ html {
     width: 50px; 
 }
 
+#maplink {
+    width: 136.98px;
+}
+
 ul {
     list-style-type: none; 
     margin: 0; 
