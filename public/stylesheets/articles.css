@@ -7,6 +7,30 @@ body {
     padding-right: 80px;   
 }
 
+.card {
+    border: none;
+}
+
+.card img {
+    max-height: 150px; /* Limit the height of the image */
+    object-fit: cover; /* Make sure the image covers the space */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the text */
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+}
+
 /* 
 .article-section {
     display: flex;
