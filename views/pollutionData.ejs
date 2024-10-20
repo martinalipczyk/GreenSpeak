@@ -8,6 +8,7 @@
 <body>
     <div class="container">
         <h1>Environmental Data for ZIP Code: <%= dataList.zipCode %></h1>
+        <p>All scaled using the Meersens Quality Index (MAQI) out of 100. 92% accuracy, increasing in urban areas with data collection.</p>
 
         <%console.log('Air Quality Data:', dataList.airQualityData.data)%>
 
@@ -15,10 +16,14 @@
 <% if (!dataList.airQualityData.found) { %>
   <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
-  <p>Air Quality Index: <%= dataList.airQualityData.index.value %></p>
-  <p>PM2.5: <%= dataList.airQualityData.pollutants.pm2_5 %> µg/m³</p>
-  <p>PM10: <%= dataList.airQualityData.pollutants.pm10 %> µg/m³</p>
-  <p>Ozone: <%= dataList.airQualityData.pollutants.ozone %> µg/m³</p>
+  <p>Air Quality Index: <%= dataList.airQualityData.index.value %> (meersens scale, /100)</p>
+  <p>Carbon Monoxide: <%= dataList.airQualityData.pollutants.co.index.value %> µg/m³</p>
+  <p>                 <%= dataList.airQualityData.pollutants.co.index.description %> </p>
+  <p>Ozone: <%= dataList.airQualityData.pollutants.o3.index.value %> µg/m³</p>
+  <p>       <%= dataList.airQualityData.pollutants.o3.index.description %> </p>
+  <p>Nitrogen Dioxide: <%= dataList.airQualityData.pollutants.no2.index.value %> µg/m³</p>
+  <p>                  <%= dataList.airQualityData.pollutants.no2.index.description %> ³</p>
+
   <p>So?: <%= dataList.airQualityData.health_recommendations.all %> </p>
 <% } %>
 
