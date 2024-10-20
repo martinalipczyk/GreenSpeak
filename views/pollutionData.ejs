@@ -11,6 +11,7 @@
 
         <%console.log('Air Quality Data:', dataList.airQualityData.data)%>
 
+        <iframe title="widget" height="340" src="https://widget.airnow.gov/aq-dial-widget/?latitude=<%=latitude%>&longitude=<%=longitude%>" style="border: none; border-radius: 25px; background-color: green" width="230"></iframe>
 <h2>Air Quality:</h2>
 <% if (!dataList.airQualityData.found) { %>
   <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
@@ -55,6 +56,9 @@
   <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
   <p>So?: <%= dataList.waterData.health_recommendations.all%></p>
 <% } %>
+<iframe title="map" height="600" width="800" src="https://gispub.epa.gov/airnow/?monitors=ozonepm&basemap=topographic&contours=none&xmin=-8300000&xmax=-8250000&ymin=4950000&ymax=5050000" style="border: none; border-radius: 25px;"></iframe>
+
+
 
 </body>
 </html>

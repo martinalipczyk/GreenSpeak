@@ -176,6 +176,21 @@ const fetchEnvironmentalData = async (latitude, longitude) => {
         return results.reduce((acc, curr) => Object.assign(acc, curr), {});
     });
 };
+function latLonToWebMercator(lat, lon) {
+    const x = lon * 20037508.34 / 180;
+    let y = Math.log(Math.tan((90 + lat) * Math.PI / 360)) / (Math.PI / 180);
+    y = y * 20037508.34 / 180;
+    return [x, y];
+}
+
+function createBoundingBox(x, y, width, height) {
+    return {
+        xmin: Math.round(x - width / 2),
+        xmax: Math.round(x + width / 2),
+        ymin: Math.round(y - height / 2),
+        ymax: Math.round(y + height / 2)
+    };
+}
 
 // Your route to fetch pollution data based on ZIP code
 app.get('/getPollutionData', async (req, res) => {
@@ -208,8 +223,13 @@ app.get('/getPollutionData', async (req, res) => {
             }
 
             console.log(datals)
+
+            const [x, y] = latLonToWebMercator(latitude, longitude);
+            const bbox = createBoundingBox(x, y, 50000, 50000);
+
+            const mapUrl = `https://gispub.epa.gov/airnow/?latitude=${latitude}&longitude=${longitude}&zoom=10`;
             // Render the template and pass the data, providing fallback for unavailable data
-            res.render('pollutionData', {dataList: datals});
+            res.render('pollutionData', {dataList: datals, latitude: latitude, longitude:longitude, mapUrl:mapUrl});
 
         } else {
             res.status(500).send('Unable to get coordinates for the provided ZIP code.');
@@ -227,36 +247,8 @@ app.get("/map", (req, res) => {
 
 
 app.get("/pollutionMap", async (req, res) => {
-    try {
-        const response = await axios.get("https://tiles.meersens.com/wms", {
-            params: { 
-                SERVICE: "GetMap",
-                VERSION: "1.1.1",
-                FORMAT: "image/png",
-                TRANSPARENT: true,
-                WIDTH: 512,
-                HEIGHT: 512,
-                SRS: "EPSG:3857",
-                tiled: true,
-                layers: "gam_o3_conc_2024_10_20_12h00",
-                bbox: "-180,-90,180,90",
-            },
-            headers: {
-                'apikey': meersensKey
-            }
-        });
-
-        // Create a URL for the image
-        const imageUrl = `data:image/png;base64,${Buffer.from(response.data, 'binary').toString('base64')}`;
-
-        // Render the EJS template and pass the image URL
-        res.render('map', { imageUrl });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error fetching pollution map");
-    }
+   
 });
-
 
 
 
