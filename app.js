@@ -142,7 +142,6 @@ app.post("/submit-article", (req, res) => {
 });
 });
 
-
 const fetchEnvironmentalData = async (latitude, longitude) => {
     const endpoints = [
         { key: 'airQuality', url: 'https://api.meersens.com/environment/public/air/current' },
@@ -159,7 +158,7 @@ const fetchEnvironmentalData = async (latitude, longitude) => {
                 params: {
                     lat: latitude,
                     lng: longitude,
-                    health_recomendations: true
+                    health_recommendations: true
                 },
                 headers: {
                     'apikey': meersensKey
