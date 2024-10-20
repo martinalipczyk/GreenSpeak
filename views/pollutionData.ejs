@@ -12,8 +12,8 @@
         <%console.log('Air Quality Data:', dataList.airQualityData.data)%>
 
 <h2>Air Quality:</h2>
-<% if (typeof dataList.airQualityData === 'string') { %>
-  <p><%= dataList.airQualityData %></p>
+<% if (!dataList.airQualityData.found) { %>
+  <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
   <p>Air Quality Index: <%= dataList.airQualityData.index.value %></p>
   <p>PM2.5: <%= dataList.airQualityData.pollutants.pm2_5 %> µg/m³</p>
@@ -23,16 +23,16 @@
 <% } %>
 
 <h2>Noise Data:</h2>
-<% if (typeof dataList.noiseData === 'string') { %>
-  <p><%= dataList.noiseData %></p>
+<% if (!dataList.noiseData.found) { %>
+  <p>No noise pollution information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
-  <p>Noise Index: <%= dataList.noiseData.noiseLevel.index.value %> dB</p>
+  <p>Noise Index: <%= dataList.noiseData.index.value %> dB</p>
   <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
 <% } %>
 
 <h2>Pollen Data:</h2>
-<% if (typeof dataList.pollenData === 'string') { %>
-  <p><%= dataList.pollenData %></p>
+<% if (!dataList.pollenData.found) { %>
+  <p>No pollen information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
   <p>Pollen Index: <%= dataList.pollenData.index.value %> dB</p>
   <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %> dB</p>
@@ -41,16 +41,16 @@
 <% } %>
 
 <h2>UV Index:</h2>
-<% if (typeof dataList.uvData === 'string') { %>
-  <p><%= dataList.uvData %></p>
+<% if (!dataList.uvData.found) { %>
+  <p>No UV information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
   <p>UV Index: <%= dataList.uvData.index.value %></p>
   <p>So?: <%= dataList.uvData.health_recommendations.all%></p>
 <% } %>
 
 <h2>Water Quality:</h2>
-<% if (typeof dataList.waterData === 'string') { %>
-  <p><%= dataList.waterData %></p>
+<% if (!dataList.waterData.found) { %>
+  <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
 <% } else { %>
   <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
   <p>So?: <%= dataList.waterData.health_recommendations.all%></p>
