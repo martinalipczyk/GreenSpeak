@@ -221,6 +221,68 @@ app.get('/getPollutionData', async (req, res) => {
     }
 });
 
+app.get("/map", (req, res) => {
+    res.render("map"); // Render the map.ejs file without any data initially
+});
+
+app.get("/pollutionMap", async (req, res) => {
+    const zipCode = req.query.zipCode;
+
+    // Check if ZIP code is provided
+    if (!zipCode) {
+        return res.status(400).send('ZIP code is required.');
+    }
+
+    try {
+        // Step 1: Convert ZIP code to latitude and longitude using the Zippopotam.us API
+        const geocodingUrl = `https://api.zippopotam.us/us/${zipCode}`;
+        const geoResponse = await axios.get(geocodingUrl);
+
+        if (geoResponse.data && geoResponse.data.places && geoResponse.data.places.length > 0) {
+            const latitude = geoResponse.data.places[0].latitude;
+            const longitude = geoResponse.data.places[0].longitude;
+            console.log(`Coordinates for ZIP code ${zipCode}: Latitude ${latitude}, Longitude ${longitude}`);
+
+            // Step 2: Create the BBOX using the coordinates
+            const bbox = `${longitude - 0.1},${latitude - 0.1},${longitude + 0.1},${latitude + 0.1}`;
+            const layerName = "meersens:gam_pm25_conc_2024_04_07_18h00"; // Example layer
+
+            const wmsUrl = "https://tiles.meersens.com/wms";
+
+            // Step 3: Fetch the WMS data
+            const response = await axios.get(wmsUrl, {
+                params: {
+                    SERVICE: "GetMap",
+                    VERSION: "1.1.1",
+                    FORMAT: "image/png",
+                    TRANSPARENT: true,
+                    WIDTH: 512,
+                    HEIGHT: 512,
+                    SRS: "EPSG:3857",
+                    TILED: true,
+                    layers: layerName,
+                    BBOX: bbox
+                },
+                headers: {
+                    'apikey': meersensKey
+                }
+            });
+
+            const fetchedWmsUrl = response.request.res.responseUrl; // Use a different variable name here
+
+            res.render("map", { wmsUrl: fetchedWmsUrl }); // Pass the fetched URL to the template
+        } else {
+            return res.status(404).send('No location found for the provided ZIP code.');
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        res.status(500).send("Error fetching data");
+    }
+});
+  
+
+
+
 
 // app.get('/getPollutionData', async (req, res) => {
     // const zipCode = req.query.zipCode;
