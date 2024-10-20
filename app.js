@@ -225,60 +225,41 @@ app.get("/map", (req, res) => {
     res.render("map"); // Render the map.ejs file without any data initially
 });
 
+
 app.get("/pollutionMap", async (req, res) => {
-    const zipCode = req.query.zipCode;
-
-    // Check if ZIP code is provided
-    if (!zipCode) {
-        return res.status(400).send('ZIP code is required.');
-    }
-
     try {
-        // Step 1: Convert ZIP code to latitude and longitude using the Zippopotam.us API
-        const geocodingUrl = `https://api.zippopotam.us/us/${zipCode}`;
-        const geoResponse = await axios.get(geocodingUrl);
+        const response = await axios.get("https://tiles.meersens.com/wms", {
+            params: { 
+                SERVICE: "GetMap",
+                VERSION: "1.1.1",
+                FORMAT: "image/png",
+                TRANSPARENT: true,
+                WIDTH: 512,
+                HEIGHT: 512,
+                SRS: "EPSG:3857",
+                tiled: true,
+                layers: "gam_o3_conc_2024_10_20_12h00",
+                bbox: "-180,-90,180,90",
+            },
+            headers: {
+                'apikey': meersensKey
+            }
+        });
 
-        if (geoResponse.data && geoResponse.data.places && geoResponse.data.places.length > 0) {
-            const latitude = geoResponse.data.places[0].latitude;
-            const longitude = geoResponse.data.places[0].longitude;
-            console.log(`Coordinates for ZIP code ${zipCode}: Latitude ${latitude}, Longitude ${longitude}`);
+        // Create a URL for the image
+        const imageUrl = `data:image/png;base64,${Buffer.from(response.data, 'binary').toString('base64')}`;
 
-            // Step 2: Create the BBOX using the coordinates
-            const bbox = `${longitude - 0.1},${latitude - 0.1},${longitude + 0.1},${latitude + 0.1}`;
-            const layerName = "meersens:gam_pm25_conc_2024_04_07_18h00"; // Example layer
-
-            const wmsUrl = "https://tiles.meersens.com/wms";
-
-            // Step 3: Fetch the WMS data
-            const response = await axios.get(wmsUrl, {
-                params: {
-                    SERVICE: "GetMap",
-                    VERSION: "1.1.1",
-                    FORMAT: "image/png",
-                    TRANSPARENT: true,
-                    WIDTH: 512,
-                    HEIGHT: 512,
-                    SRS: "EPSG:3857",
-                    TILED: true,
-                    layers: layerName,
-                    BBOX: bbox
-                },
-                headers: {
-                    'apikey': meersensKey
-                }
-            });
-
-            const fetchedWmsUrl = response.request.res.responseUrl; // Use a different variable name here
-
-            res.render("map", { wmsUrl: fetchedWmsUrl }); // Pass the fetched URL to the template
-        } else {
-            return res.status(404).send('No location found for the provided ZIP code.');
-        }
+        // Render the EJS template and pass the image URL
+        res.render('map', { imageUrl });
     } catch (error) {
-        console.error("Error fetching data:", error);
-        res.status(500).send("Error fetching data");
+        console.error(error);
+        res.status(500).send("Error fetching pollution map");
     }
 });
+
+
+
+
   
 
 
