@@ -1,0 +1,13 @@
+.masonry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+  
+.card {
+    margin-bottom: 20px;
+}
