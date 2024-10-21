@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "@anthropic-ai/sdk": "^0.29.2",
+    "@google-cloud/language": "^6.5.0",
+    "@google/generative-ai": "^0.21.0",
     "ajax": "^0.0.4",
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
