@@ -30,7 +30,7 @@ body {
 
 #second_bg {
     /* background-color: rgb(218, 231, 223); */
-    background-color: #274d2a;
+    background-color: rgb(221, 221, 221);
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -74,7 +74,7 @@ body {
 
 #third_bg {
     /* background-color: rgb(255, 255, 255); */
-    background-color: rgba(231, 227, 216, 1);
+    background-color:#45a049;
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -156,7 +156,7 @@ body {
 
 #article-section {
     /* background-color: rgb(218, 231, 223); */
-    background-color: #819058;
+    background-color: rgb(221, 221, 221);
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -179,7 +179,7 @@ body {
 
 #opp-section {
     /* background-color: rgb(255, 255, 255); */
-    background-color: rgba(231, 227, 216, 1);
+    background-color: #45a049;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
