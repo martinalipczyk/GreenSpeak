@@ -1,6 +1,8 @@
 body {
     padding-left: 80px;
     padding-right: 80px;
+    padding-top: 120px;
+    background-color: #55833d;
 }
 
 .masonry-grid {
@@ -15,4 +17,8 @@ body {
   
 .card {
     margin-bottom: 20px;
+}
+
+.card-header{
+    background-color: #d3d4d3;
 }

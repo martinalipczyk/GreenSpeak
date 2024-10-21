@@ -10,7 +10,7 @@ body {
     font-family: Arial, sans-serif;
     padding-left: 80px;
     padding-right: 80px;
-    background-color: #f9f9f9;
+    background-color: rgba(126, 187, 126, 0.905);
     
 }
 
@@ -20,6 +20,7 @@ h2 {
 
 .card {
     transition: transform 0.3s ease-in-out;
+    border: 3px solid rgb(94, 159, 94);
 }
 
 .card:hover {
@@ -31,9 +32,6 @@ h2 {
     border: 2px solid #85bb65;
 }
 
-.navbar.bg-transparent {
-    background-color: rgb(238, 238, 238) !important;
-}
 /* 
 .navbar.bg-scrolled {
     background-color: rgba(238, 238, 238, 0.9) !important; 
@@ -44,3 +42,4 @@ button:hover {
     transform: translateY(-2px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
+
