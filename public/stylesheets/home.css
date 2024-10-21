@@ -30,7 +30,7 @@ body {
 
 #second_bg {
     /* background-color: rgb(218, 231, 223); */
-    background-color: #274d2a;
+    background-color: rgb(221, 221, 221);
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -74,7 +74,7 @@ body {
 
 #third_bg {
     /* background-color: rgb(255, 255, 255); */
-    background-color: rgba(231, 227, 216, 1);
+    background-color:#45a049;
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -156,7 +156,7 @@ body {
 
 #article-section {
     /* background-color: rgb(218, 231, 223); */
-    background-color: #819058;
+    background-color: rgb(221, 221, 221);
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -179,7 +179,7 @@ body {
 
 #opp-section {
     /* background-color: rgb(255, 255, 255); */
-    background-color: rgba(231, 227, 216, 1);
+    background-color: #45a049;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -253,6 +253,46 @@ button {
 
 button:hover {
     background-color: #61ce67; 
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.footer h5 {
+    color: #333;
+    font-weight: bold;
+}
+
+.footer .input-group {
+    max-width: 400px;
+}
+
+.footer .btn-outline-dark {
+    border: 1px solid #6c757d;
+}
+
+.footer .btn-outline-dark:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.footer .text-dark:hover {
+    text-decoration: underline;
+}
+
+.footer .bg-dark {
+    background-color: #343a40 !important;
+}
+
+.footer .social-icons a {
+    margin: 0 5px;
+}
+
+.footer .social-icons a:hover {
+    color: #28a745;
 }
 
 
