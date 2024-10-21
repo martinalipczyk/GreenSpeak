@@ -1,4 +1,4 @@
-body {
+/* body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     background-color: #f9f9f9;
@@ -12,14 +12,14 @@ body {
 }
 
 .card img {
-    max-height: 150px; /* Limit the height of the image */
-    object-fit: cover; /* Make sure the image covers the space */
+    max-height: 150px; 
+    object-fit: cover; 
 }
 
 .card-body {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center the text */
+    justify-content: center; 
 }
 
 .card-title {
@@ -38,7 +38,7 @@ body {
 .articles .card:hover {
     transform: scale(1.05); 
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); 
-}
+} */
 
 /* .navbar.bg-scrolled {
     background-color: rgba(238, 238, 238, 0.9) !important; 

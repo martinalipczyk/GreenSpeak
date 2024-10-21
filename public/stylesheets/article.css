@@ -1,3 +1,80 @@
 body {
-    margin-left: 80px;
-}
+
+    padding-top: 100px; 
+ 
+  }
+ 
+  
+ 
+  .article-content {
+ 
+    max-width: 800px;
+ 
+    margin: 0 auto;
+ 
+    padding: 20px;
+ 
+  }
+ 
+  
+ 
+  .article-title {
+ 
+    font-size: 2.5rem;
+ 
+    font-weight: bold;
+ 
+    margin-bottom: 20px;
+ 
+  }
+ 
+  
+ 
+  .article-content p {
+ 
+    margin-bottom: 15px;
+ 
+  }
+ 
+ 
+ 
+ 
+  .submit-article-container {
+ 
+    width: 100%;
+ 
+    text-align: left;
+ 
+    margin-top: 20px;
+ 
+ }
+ 
+ 
+ 
+ 
+ .green-button {
+ 
+    background-color: #28a745; 
+ 
+    color: white; 
+ 
+    border: none; 
+ 
+    padding: 10px 20px; 
+ 
+    font-size: 1rem; 
+ 
+    border-radius: 5px; 
+ 
+    transition: background-color 0.3s ease; 
+ 
+ }
+ 
+ 
+ 
+ 
+ .green-button:hover {
+ 
+    background-color: #218838; 
+ 
+ }
