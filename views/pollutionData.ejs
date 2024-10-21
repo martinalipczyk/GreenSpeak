@@ -9,63 +9,105 @@
     <title>Pollution Data for ZIP Code <%= dataList.zipCode %></title>
 </head>
 <body>
-  <nav id="mainNav" class="navbar navbar-expand-sm navbar-light fixed-top">
-    <div class="container">
-      <ul class="navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
-        <li class="nav-item active"><a href="/" class="nav-link">HOME PAGE</a></li>
-        <li class="nav-item active"><a href="/#third_bg" class="nav-link">VIEW MAP</a></li>
-        <li class="nav-item active"><a href="/articles" class="nav-link">ARTICLES</a></li>
-        <li class="nav-item active mx-3"><div class="nav-title">Green Speak</div></li>
-        <li class="nav-item active"><a href="/opportunities" class="nav-link">OPPORTUNITIES</a></li>
-        <li class="nav-item active"><a href="/getinvolved" class="nav-link">GET INVOLVED</a></li>
-        <li class="nav-item active"><a href="/gallery" class="nav-link">GALLERY</a></li>
-      </ul>
-    </div>
-  </nav>
+    <nav id = "mainNav" class = "navbar navbar-expand-sm navbar-light fixed-top">
+        <div class = "container">
+          <ul class = "navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
+            <li class = "nav-item active"><a href ="/" class = "nav-link">HOME PAGE</a></li>
+            <li class = "nav-item active"><a href = "/articles" class = "nav-link">ARTICLES</a></li>
+            <li class = "nav-title"><img src = "/images/logo.png" width="133.3333px" height="75px"></li>
+            <li class = "nav-item active"><a href = "/opportunities" class = "nav-link">OPPORTUNITIES</a></li>
+            <li class = "nav-item active"><a href = "/gallery" class = "nav-link">GALLERY</a></li>
+          </ul>
+        </div>
+    </nav>
 
-  <div class="container pt-3">
-    <div class="row">
-      <div class="masonry-grid">
-        <div class="card">
-          <div class="card-header bg-success text-white">Air Quality</div>
-          <div class="card-body">
-            <p>Air Quality Index: <%= dataList.airQualityData.index.value %></p>
-            <p>PM2.5: <%= dataList.airQualityData.pollutants.pm2_5 %> µg/m³</p>
-            <p>PM10: <%= dataList.airQualityData.pollutants.pm10 %> µg/m³</p>
-            <p>Ozone: <%= dataList.airQualityData.pollutants.ozone %> µg/m³</p>
-          </div>
+  <div class="masonry-grid">
+    <div class="card">
+        <div class="card-header text-black ">Air Quality</div>
+        <div class="card-body d-flex">
+            <div class="flex-grow-1">
+                <% if (!dataList.airQualityData.found) { %>
+                    <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
+                  <% } else { %>
+                    <p>Air Quality Index: <%= dataList.airQualityData.index.value %> (meersens scale, /100)</p>
+                    <p>Carbon Monoxide: <%= dataList.airQualityData.pollutants.co.index.value %> µg/m³</p>
+                    <p>                 <%= dataList.airQualityData.pollutants.co.index.description %> </p>
+                    <p>Ozone: <%= dataList.airQualityData.pollutants.o3.index.value %> µg/m³</p>
+                    <p>       <%= dataList.airQualityData.pollutants.o3.index.description %> </p>
+                    <p>Nitrogen Dioxide: <%= dataList.airQualityData.pollutants.no2.index.value %> µg/m³</p>
+                    <p>                  <%= dataList.airQualityData.pollutants.no2.index.description %> ³</p>
+                  
+                    <p>So?: <%= dataList.airQualityData.health_recommendations.all %> </p>
+                  <% } %>
+            </div>
+            <div class="ms-3" style="width: 230px;">
+                <iframe title="widget" height="340" src="https://widget.airnow.gov/aq-dial-widget/?latitude=<%=latitude%>&longitude=<%=longitude%>" style="border: none; border-radius: 25px; background-color: green" width="100%"></iframe>
+            </div>
         </div>
-        <div class="card">
-          <div class="card-header bg-info text-white">Noise Data</div>
-          <div class="card-body">
-            <p>No noise pollution information found for zip code: <%= dataList.zipCode %></p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-warning text-white">Pollen Data</div>
-          <div class="card-body">
-            <p>Pollen Index: <%= dataList.pollenData.index.value %> dB</p>
-            <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %> dB</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-danger text-white">UV Index</div>
-          <div class="card-body">
-            <p>UV Index: <%= dataList.uvData.index.value %></p>
-            <p>So?: <%= dataList.uvData.health_recommendations.all %></p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-primary text-white">Water Quality</div>
-          <div class="card-body">
-            <p>No water quality information found for zip code: <%= dataList.zipCode %></p>
-          </div>
-        </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header text-black">Air Quality Map</div>
+      <div class="card-body">
+          <iframe title="map" height= 100% width= 100% src="https://gispub.epa.gov/airnow/?monitors=ozonepm&basemap=topographic&contours=none&xmin=-8300000&xmax=-8250000&ymin=4950000&ymax=5050000" style="border: none; border-radius: 25px;"></iframe>
       </div>
     </div>
+
+    <div class="card">
+        <div class="card-header text-black">Noise Data</div>
+        <div class="card-body">
+            <% if (!dataList.noiseData.found) { %>
+                <p>No noise pollution information found for zip code: <%= dataList.zipCode %></p>
+              <% } else { %>
+                <p>Noise Index: <%= dataList.noiseData.index.value %> dB</p>
+                <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
+              <% } %>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-black">Pollen Data</div>
+        <div class="card-body">
+            <% if (!dataList.pollenData.found) { %>
+                <p>No pollen information found for zip code: <%= dataList.zipCode %></p>
+              <% } else { %>
+                <p>Pollen Index: <%= dataList.pollenData.index.value %> dB</p>
+                <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %> dB</p>
+              
+                <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
+              <% } %>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-black">UV Index</div>
+        <div class="card-body">
+            <% if (!dataList.uvData.found) { %>
+                <p>No UV information found for zip code: <%= dataList.zipCode %></p>
+              <% } else { %>
+                <p>UV Index: <%= dataList.uvData.index.value %></p>
+                <p>So?: <%= dataList.uvData.health_recommendations.all%></p>
+              <% } %>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header text-black">Water Quality</div>
+        <div class="card-body">
+            <% if (!dataList.waterData.found) { %>
+                <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
+              <% } else { %>
+                <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
+                <p>So?: <%= dataList.waterData.health_recommendations.all%></p>
+              <% } %>
+        </div>
+    </div>
   </div>
-  
-  
+
+  <h2>Air Quality Information</h2>
+<pre><%= pollutionInfo %></pre>
+
+<h2>Additional Insights</h2>
+<p><%= huggingFaceInsights %></p>
+
+
 
   <script>
     window.addEventListener('scroll', handleScroll);

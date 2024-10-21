@@ -22,7 +22,7 @@ body {
 
 .first_bg{  
     height:100vh;
-    background-image:url('/images/nature4.jpg');
+    background-image:url('/images/nature10.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -73,8 +73,7 @@ body {
 }
 
 #third_bg {
-    /* background-color: rgb(255, 255, 255); */
-    background-color:#45a049;
+    background-color: #55833d;
     scroll-margin-top: 80px;
     padding: 50px 20px;
     display: flex;
@@ -84,14 +83,14 @@ body {
 }
 #third_bg h1 {
     font-size: 36px; 
-    color: #000000; 
+    /* color: #000000;  */
     margin: 0; 
     text-align: center;
 }
 
 #third_bg p {
     font-size: 18px; 
-    color: #333; 
+    /* color: #333;  */
     line-height: 1.5;
 }
 
@@ -102,12 +101,14 @@ body {
     margin-right: 20px; 
     align-items: center;
     justify-content: center;
-    margin-top:100px;
+    margin-top:10px;
+
 }
 
 #third_bg iframe{
     height:100px;
 }
+
 #article-section img {
     width: 170px; 
     max-height:170px;
@@ -119,7 +120,7 @@ body {
     width: 200px; 
     max-height:200px;
     height: auto; 
-    margin-top:30px;
+    margin-top:5px;
 }
 
 #learn-more {
@@ -179,7 +180,8 @@ body {
 
 #opp-section {
     /* background-color: rgb(255, 255, 255); */
-    background-color: #45a049;
+    /* background-color:#28a745; */
+    background-color: #55833d;
     padding: 50px 20px;
     display: flex;
     justify-content: center;
@@ -189,14 +191,14 @@ body {
 
 #opp-section h1 {
     font-size: 36px; 
-    color: #000000; 
+    /* color: #000000;  */
     margin: 0; 
     text-align: center;
 }
 
 #opp-section p {
     font-size: 20px; 
-    color: #333; 
+    /* color: #333;  */
     line-height: 1.5;
 }
 
@@ -253,6 +255,46 @@ button {
 
 button:hover {
     background-color: #61ce67; 
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.footer h5 {
+    color: #333;
+    font-weight: bold;
+}
+
+.footer .input-group {
+    max-width: 400px;
+}
+
+.footer .btn-outline-dark {
+    border: 1px solid #6c757d;
+}
+
+.footer .btn-outline-dark:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.footer .text-dark:hover {
+    text-decoration: underline;
+}
+
+.footer .bg-dark {
+    background-color: #343a40 !important;
+}
+
+.footer .social-icons a {
+    margin: 0 5px;
+}
+
+.footer .social-icons a:hover {
+    color: #28a745;
 }
 
 

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
+
 body {
     font-family: 'Poppins', sans-serif; /* Set a default font */
     padding-top: 100px;
@@ -45,7 +46,6 @@ nav {
     /* margin-left:-25px; */
 }
 
-
 .nav-title {
     padding: 5px 10px; 
     margin-top: 3px;
@@ -71,12 +71,12 @@ nav {
 }
 
 .navbar.bg-transparent {
-    background-color: rgb(238, 238, 238) !important;
+    background-color: rgb(255, 255, 255) !important;
     transition: background-color 0.3s ease-in-out;
 }
 
 .navbar.bg-scrolled {
-    background-color: rgba(238, 238, 238, 0.9) !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 

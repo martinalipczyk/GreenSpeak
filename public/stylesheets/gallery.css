@@ -4,14 +4,6 @@ body{
     background-color: #f9f9f9;
 }
 
-.navbar.bg-transparent {
-    background-color: rgb(238, 238, 238) !important;
-}
-
-.navbar.bg-scrolled {
-    background-color: rgba(238, 238, 238, 0.9) !important; 
-}
-
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
