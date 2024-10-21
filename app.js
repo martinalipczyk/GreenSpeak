@@ -23,86 +23,107 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "home.html"));
 });
 
-const getPollutionInfo = (zipCode, airQualityData) => {
-    const aqi = airQualityData.index.value;
-    let category, healthEffects, cautionaryStatement, causes;
+// const getPollutionInfo = (zipCode, airQualityData) => {
+//     const aqi = airQualityData.index.value;
+//     let category, healthEffects, cautionaryStatement, causes;
 
-    if (aqi <= 50) {
-        category = "Good";
-        healthEffects = "Air quality is considered satisfactory, and air pollution poses little or no risk.";
-        cautionaryStatement = "None";
-        causes = "Low levels of air pollutants due to favorable weather conditions or low emissions.";
-    } else if (aqi <= 100) {
-        category = "Moderate";
-        healthEffects = "Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.";
-        cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.";
-        causes = "Slight increase in pollutants due to weather conditions or moderate emissions from industries or vehicles.";
-    } else if (aqi <= 150) {
-        category = "Unhealthy for Sensitive Groups";
-        healthEffects = "Members of sensitive groups may experience health effects. The general public is not likely to be affected.";
-        cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.";
-        causes = "Increased levels of pollutants, possibly due to weather conditions (e.g., temperature inversions) or higher emissions from industries or vehicles.";
-    } else if (aqi <= 200) {
-        category = "Unhealthy";
-        healthEffects = "Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.";
-        cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.";
-        causes = "High levels of pollutants, often due to significant industrial emissions, heavy traffic, or unfavorable weather conditions.";
-    } else if (aqi <= 300) {
-        category = "Very Unhealthy";
-        healthEffects = "Health warnings of emergency conditions. The entire population is more likely to be affected.";
-        cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.";
-        causes = "Very high levels of pollutants, possibly due to major industrial incidents, severe weather conditions trapping pollutants, or a combination of high emissions and unfavorable weather.";
-    } else {
-        category = "Hazardous";
-        healthEffects = "Health alert: everyone may experience more serious health effects.";
-        cautionaryStatement = "Everyone should avoid all outdoor exertion.";
-        causes = "Extremely high levels of pollutants, often due to major environmental events (e.g., wildfires) or severe industrial accidents.";
-    }
+//     if (aqi <= 50) {
+//         category = "Good";
+//         healthEffects = "Air quality is considered satisfactory, and air pollution poses little or no risk.";
+//         cautionaryStatement = "None";
+//         causes = "Low levels of air pollutants due to favorable weather conditions or low emissions.";
+//     } else if (aqi <= 100) {
+//         category = "Moderate";
+//         healthEffects = "Air quality is acceptable; however, for some pollutants there may be a moderate health concern for a very small number of people who are unusually sensitive to air pollution.";
+//         cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.";
+//         causes = "Slight increase in pollutants due to weather conditions or moderate emissions from industries or vehicles.";
+//     } else if (aqi <= 150) {
+//         category = "Unhealthy for Sensitive Groups";
+//         healthEffects = "Members of sensitive groups may experience health effects. The general public is not likely to be affected.";
+//         cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.";
+//         causes = "Increased levels of pollutants, possibly due to weather conditions (e.g., temperature inversions) or higher emissions from industries or vehicles.";
+//     } else if (aqi <= 200) {
+//         category = "Unhealthy";
+//         healthEffects = "Everyone may begin to experience health effects; members of sensitive groups may experience more serious health effects.";
+//         cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.";
+//         causes = "High levels of pollutants, often due to significant industrial emissions, heavy traffic, or unfavorable weather conditions.";
+//     } else if (aqi <= 300) {
+//         category = "Very Unhealthy";
+//         healthEffects = "Health warnings of emergency conditions. The entire population is more likely to be affected.";
+//         cautionaryStatement = "Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.";
+//         causes = "Very high levels of pollutants, possibly due to major industrial incidents, severe weather conditions trapping pollutants, or a combination of high emissions and unfavorable weather.";
+//     } else {
+//         category = "Hazardous";
+//         healthEffects = "Health alert: everyone may experience more serious health effects.";
+//         cautionaryStatement = "Everyone should avoid all outdoor exertion.";
+//         causes = "Extremely high levels of pollutants, often due to major environmental events (e.g., wildfires) or severe industrial accidents.";
+//     }
 
-    const recommendations = `Based on the current air quality:
-    1. ${cautionaryStatement}
-    2. Consider using air purifiers indoors.
-    3. Stay updated on local air quality reports.
-    4. If you have respiratory issues, consult with your healthcare provider for personalized advice.
-    5. Support and follow local initiatives to improve air quality.`;
+//     const recommendations = `Based on the current air quality:
+//     1. ${cautionaryStatement}
+//     2. Consider using air purifiers indoors.
+//     3. Stay updated on local air quality reports.
+//     4. If you have respiratory issues, consult with your healthcare provider for personalized advice.
+//     5. Support and follow local initiatives to improve air quality.`;
 
-    return `
-    Air Quality Information for ZIP code ${zipCode}:
+//     return `
+//     Air Quality Information for ZIP code ${zipCode}:
     
-    Current AQI: ${aqi.toFixed(2)}
-    Category: ${category}
+//     Current AQI: ${aqi.toFixed(2)}
+//     Category: ${category}
     
-    Health Effects:
-    ${healthEffects}
+//     Health Effects:
+//     ${healthEffects}
     
-    Possible Causes:
-    ${causes}
+//     Possible Causes:
+//     ${causes}
     
-    Recommendations:
-    ${recommendations}
-    `;
-};
+//     Recommendations:
+//     ${recommendations}
+//     `;
+// };
 
 const getGeminiInsights = async (aqi, zipCode) => {
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
         const prompt = `
-        Act as an environmental health expert. Given the following information:
+        Act as an environmental health expert providing advice to a community member. Given the following information:
         - Air Quality Index (AQI): ${aqi}
         - Location: ZIP code ${zipCode}
 
-        Please provide:
-        1. A brief assessment of the air quality level
-        2. 2-3 specific health recommendations based on this AQI
-        3. One practical suggestion for improving local air quality
+        Write a brief, cohesive response that flows naturally and covers:
+        1. Your assessment of the current air quality level and what it means for the community
+        2. Specific health recommendations appropriate for this AQI level
+        3. A practical suggestion for improving local air quality
 
-        Keep the response concise and factual. Format with bullet points.
-        `;
+        Important formatting instructions:
+        - Write in clear, flowing paragraphs
+        - Use natural transitions between topics
+        - Write conversationally but professionally
+        - Do not use any special formatting characters
+        - Do not use bullet points or numbered lists
+        - Keep the total response to 3-4 short paragraphs
+
+        Example structure:
+        [First paragraph about current air quality assessment]
+        [Second paragraph with health recommendations]
+        [Final paragraph with improvement suggestion]`;
 
         const result = await model.generateContent(prompt);
         const response = await result.response;
-        return response.text();
+        
+        // Clean up any remaining markdown or special characters
+        let cleanText = response.text()
+            .replace(/\*\*/g, '')
+            .replace(/\*/g, '')
+            .replace(/`/g, '')
+            .replace(/#{1,6}\s/g, '')
+            .replace(/•/g, '')
+            .replace(/- /g, '')
+            .replace(/\n\n+/g, '\n\n'); // Replace multiple newlines with just two
+
+        return cleanText;
 
     } catch (error) {
         console.error("Error fetching insights from Gemini:", error);
@@ -186,7 +207,7 @@ app.get('/getPollutionData', async (req, res) => {
                 waterData: environmentalData.water || 'No water quality data available for this area.'
             }
 
-            const pollutionInfo = getPollutionInfo(zipCode, datals.airQualityData);
+            // const pollutionInfo = getPollutionInfo(zipCode, datals.airQualityData);
 
             // Get insights from Gemini AI
             const geminiInsights = await getGeminiInsights(
@@ -204,7 +225,7 @@ app.get('/getPollutionData', async (req, res) => {
                 latitude: latitude,
                 longitude: longitude,
                 mapUrl: mapUrl,
-                pollutionInfo: pollutionInfo,
+                // pollutionInfo: pollutionInfo,
                 huggingFaceInsights: geminiInsights
             });
 
