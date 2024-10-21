@@ -37,7 +37,7 @@
                     <p>Nitrogen Dioxide: <%= dataList.airQualityData.pollutants.no2.index.value %> µg/m³</p>
                     <p>                  <%= dataList.airQualityData.pollutants.no2.index.description %> ³</p>
                   
-                    <p>So?: <%= dataList.airQualityData.health_recommendations.all %> </p>
+                    <p>What does it mean?: <%= dataList.airQualityData.health_recommendations.all %> </p>
                   <% } %>
             </div>
             <div class="ms-3" style="width: 230px;">
@@ -60,7 +60,7 @@
                 <p>No noise pollution information found for zip code: <%= dataList.zipCode %></p>
               <% } else { %>
                 <p>Noise Index: <%= dataList.noiseData.index.value %> dB</p>
-                <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
+                <p>What does it mean?: <%= dataList.noiseData.health_recommendations.all%></p>
               <% } %>
         </div>
     </div>
@@ -70,10 +70,10 @@
             <% if (!dataList.pollenData.found) { %>
                 <p>No pollen information found for zip code: <%= dataList.zipCode %></p>
               <% } else { %>
-                <p>Pollen Index: <%= dataList.pollenData.index.value %> dB</p>
-                <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %> dB</p>
+                <p>Pollen Index: <%= dataList.pollenData.index.value %> grains/m³</p>
+                <p>Main Pollen Pollutants: <%= dataList.pollenData.index.main_pollutants %></p>
               
-                <p>So?: <%= dataList.noiseData.health_recommendations.all%></p>
+                <p>What does it mean?: Pollen pollution is currently not a prominent concern for all groups. </p>
               <% } %>
         </div>
     </div>
@@ -84,7 +84,7 @@
                 <p>No UV information found for zip code: <%= dataList.zipCode %></p>
               <% } else { %>
                 <p>UV Index: <%= dataList.uvData.index.value %></p>
-                <p>So?: <%= dataList.uvData.health_recommendations.all%></p>
+                <p>What does it mean?: <%= dataList.uvData.health_recommendations.all%></p>
               <% } %>
         </div>
     </div>
@@ -95,7 +95,7 @@
                 <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
               <% } else { %>
                 <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
-                <p>So?: <%= dataList.waterData.health_recommendations.all%></p>
+                <p>What does it mean?: <%= dataList.waterData.health_recommendations.all%></p>
               <% } %>
         </div>
     </div>

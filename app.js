@@ -330,6 +330,10 @@ app.get("/gallery", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "gallery.html"));
 });
 
+app.get("/home", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "home.html"))
+});
+
 app.listen(port, () => {
     console.log(`App server listening on ${port}. (Go to http://localhost:${port})`);
 });
