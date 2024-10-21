@@ -250,5 +250,45 @@ button:hover {
     background-color: #45a049; 
 }
 
+.footer {
+    background-color: #f8f9fa;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.footer h5 {
+    color: #333;
+    font-weight: bold;
+}
+
+.footer .input-group {
+    max-width: 400px;
+}
+
+.footer .btn-outline-dark {
+    border: 1px solid #6c757d;
+}
+
+.footer .btn-outline-dark:hover {
+    background-color: #6c757d;
+    color: white;
+}
+
+.footer .text-dark:hover {
+    text-decoration: underline;
+}
+
+.footer .bg-dark {
+    background-color: #343a40 !important;
+}
+
+.footer .social-icons a {
+    margin: 0 5px;
+}
+
+.footer .social-icons a:hover {
+    color: #28a745;
+}
+
 
 

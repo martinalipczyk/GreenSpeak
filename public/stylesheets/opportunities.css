@@ -1,5 +1,9 @@
+
+
+
 html {
     overflow-y: scroll;
+
 }
 
 body {
@@ -7,6 +11,7 @@ body {
     padding-left: 80px;
     padding-right: 80px;
     background-color: #f9f9f9;
+    
 }
 
 h2 {
@@ -22,7 +27,8 @@ h2 {
     z-index: 2; 
 }
 .card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 2px solid #85bb65;
 }
 
 .navbar.bg-transparent {
@@ -32,3 +38,9 @@ h2 {
 .navbar.bg-scrolled {
     background-color: rgba(238, 238, 238, 0.9) !important; 
 } */
+
+button:hover {
+    background-color: #28a745;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
