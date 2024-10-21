@@ -15,6 +15,11 @@ body {
     transition: color 0.3s ease-in-out; 
 }
 
+.navbar.bg-transparent {
+    background-color: transparent !important;
+    transition: background-color 0.3s ease-in-out;
+}
+
 .first_bg{  
     height:100vh;
     background-image:url('/images/nature4.jpg');
