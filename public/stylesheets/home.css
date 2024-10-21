@@ -156,7 +156,7 @@ body {
 
 #article-section {
     /* background-color: rgb(218, 231, 223); */
-    background-color: rgb(221, 221, 221);
+    background-color: rgba(231, 227, 216, 1);
     padding: 50px 20px;
     display: flex;
     justify-content: center;
