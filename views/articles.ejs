@@ -14,7 +14,7 @@
           <ul class = "navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
             <li class = "nav-item active"><a href ="/" class = "nav-link">HOME PAGE</a></li>
             <li id = "articlelink" class = "nav-item active text-center"><a href = "/articles" class = "nav-link">ARTICLES</a></li>
-            <li class = "nav-title"><a href = /home><img src = "/images/logo.png" width="133.3333px" height="75px"></a></li>
+            <li class = "nav-title mt-0 pt-1"><a href = /home><img src = "/images/logo.png" width="133.3333px" height="75px"></a></li>
             <li class = "nav-item active"><a href = "/opportunities" class = "nav-link">OPPORTUNITIES</a></li>
             <li class = "nav-item active"><a href = "/gallery" class = "nav-link">GALLERY</a></li>
           </ul>
@@ -29,7 +29,7 @@
         </p>
     </div>
 
-    <div class="container submit-article-container">
+    <div class="container submit-article-container text-center">
         <div>
             <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal "style="background-color: #55833D;">
                 Submit an Article
@@ -73,7 +73,7 @@
                             <div class="card mb-4">
                                 <div class="row g-0">
                                     <div class="col-md-4 d-flex justify-content-center align-items-center p-3">
-                                        <img src="/images/nature.jpg" class="img-fluid rounded" alt="Article Image">
+                                        <img src="/images/<%= article.image %>>" class="img-fluid rounded" alt="Article Image">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
@@ -146,6 +146,10 @@
                         <div class="mb-3">
                             <label for="institution" class="form-label">Institution</label>
                             <input type="text" class="form-control" id="institution" name="institution">
+                        </div>
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Image Name/URL</label>
+                            <input type="text" class="form-control" id="image" name="image">
                         </div>
                         <div class="mb-3">
                             <label for="date" class="form-label">Date Finished</label>

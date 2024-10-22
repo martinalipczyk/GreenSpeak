@@ -14,24 +14,21 @@
           <ul class = "navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
             <li class = "nav-item active"><a href ="/" class = "nav-link">HOME PAGE</a></li>
             <li id = "articlelink" class = "nav-item active text-center"><a href = "/articles" class = "nav-link">ARTICLES</a></li>
-            <li class = "nav-title"><a href = /home><img src = "/images/logo.png" width="133.3333px" height="75px"></a></li>
+            <li class = "nav-title mt-0 pt-1"><a href = /home><img src = "/images/logo.png" width="133.3333px" height="75px"></a></li>
             <li class = "nav-item active"><a href = "/opportunities" class = "nav-link">OPPORTUNITIES</a></li>
             <li class = "nav-item active"><a href = "/gallery" class = "nav-link">GALLERY</a></li>
           </ul>
         </div>
     </nav>
-    <div class = "container">
-        <h1>Opportunities and Events</h1>
+    <div class="container text-center">
+        <h1 class="text-white mb-4">Opportunities and Events</h1>
     </div>
 
-    <div class = "container">
-        <div>
-            <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal "style="background-color: #55833D;">
-                Post an Opportunity
-            </button>
-        </div>
+    <div class="container text-center">
+        <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal" style="background-color: #55833D;">
+            Post an Opportunity
+        </button>
     </div>
-
     <div class="container mt-4">
         <div class="row">
             <% if (opportunities.length === 0) { %>
