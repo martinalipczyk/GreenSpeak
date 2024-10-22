@@ -24,7 +24,9 @@
     </nav>
     <h1>Gallery</h1>
     <p>See images uploaded by other people in your community - community activities, botanical gardens, activists, and more. Contribute by posting your own images!</p>
-    <button class="btn btn-success" id = "submitbtn" onclick="viewModal()">Submit an image!</button>
+    <button type="button" id = "submitbtn" onclick = "viewModal()" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal "style="background-color: #55833D;">
+        Submit an image!
+    </button>
 
     <div class="gallery-container">
         <div class="gallery" id="gallery">
@@ -98,7 +100,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" onclick="submitForm()">Submit</button>
+                    <button type="submit" class="btn text-white" onclick = "submitForm()" style="background-color: #55833D;">Submit</button>
                 </div>
             </div>
         </div>
