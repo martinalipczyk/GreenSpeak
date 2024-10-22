@@ -20,6 +20,21 @@
           </ul>
         </div>
     </nav>
+
+    <% if (successMessage && successMessage.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show fixed-top mx-auto" style="width: fit-content; margin-top: 100px;" role="alert">
+            <%= successMessage %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    
+    <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show fixed-top mx-auto" style="width: fit-content; margin-top: 100px;" role="alert">
+            <%= errorMessage %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    
     <div class="container text-center">
         <h1 class="text-white mb-4 slide-in-up">Opportunities and Events</h1>
     </div>

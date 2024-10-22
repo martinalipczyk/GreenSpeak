@@ -10,12 +10,20 @@ const airNowApiKey = process.env.AIRNOW_API_KEY;
 const meersensKey = process.env.MEERSENS_API_KEY;
 const geminiApiKey = process.env.GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(geminiApiKey);
+const session = require('express-session');
+const flash = require('connect-flash');
 
 app.use(logger("dev"));
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");  
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'greenspeakSecret',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(flash());
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "views", "home.html"));
@@ -176,7 +184,6 @@ app.get('/getPollutionData', async (req, res) => {
     }
 });
 
-// Your existing routes
 app.get("/articles", (req, res) => {
     const getarticles = "SELECT * FROM articles ORDER BY date DESC"; 
 
@@ -185,7 +192,11 @@ app.get("/articles", (req, res) => {
             console.error("Error fetching articles:", error);
             return res.status(500).send("There was an error fetching articles.");
         }
-        res.render("articles", { articles: results });
+        res.render("articles", { 
+            articles: results,
+            successMessage: req.flash('success'),
+            errorMessage: req.flash('error')
+        });
     });
 });
 
@@ -215,7 +226,11 @@ app.get("/opportunities", (req, res) => {
             return res.status(500).send("There was an error fetching opportunities.");
         }
         
-        res.render("opportunities", { opportunities: results });
+        res.render("opportunities", { 
+            opportunities: results,
+            successMessage: req.flash('success'),
+            errorMessage: req.flash('error')
+        });
     });
 });
 
@@ -231,19 +246,16 @@ app.post("/submit-opp", (req, res) => {
     db.execute(osub, [first_name, last_name, email, event, description, organization, date], (error, result) => {
         if (error) {
             console.error("Database error:", error); 
-            return res.status(500).send("There was an error submitting your event.");
+            req.flash('error', 'There was an error submitting your event.');
+            return res.redirect('/opportunities');
         }
 
-        const sql = "SELECT * FROM opportunities ORDER BY date DESC";
-        db.execute(sql, (error, results) => {
-            if (error) {
-                console.error("Error fetching opportunities:", error);
-                return res.status(500).send("There was an error fetching opportunities.");
-            }
-            res.render("opportunities", { opportunities: results });
-        });
+        req.flash('success', 'Event successfully submitted. It will now go under review by GreenSpeak.');
+        res.redirect('/opportunities');
     });
 });
+
+
 
 app.get("/opportunities/:opp_id", (req, res) => {
     const oppId = req.params.opp_id; 
@@ -259,24 +271,19 @@ app.get("/opportunities/:opp_id", (req, res) => {
 });
 
 app.post("/submit-article", (req, res) => {
-    const { first_name, last_name, email, title, text, institution, date } = req.body;
+    const { first_name, last_name, email, title, text, institution, date, image } = req.body;
     const asub = `INSERT INTO articles (first_name, last_name, email, title, text, institution, date, image) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
     db.execute(asub, [first_name, last_name, email, title, text, institution, date, image], (error, result) => {
         if (error) {
             console.error("Database error:", error); 
-            return res.status(500).send("There was an error submitting your article.");
+            req.flash('error', 'There was an error submitting your article.');
+            return res.redirect('/articles');
         }
-        const getarticles = "SELECT * FROM articles ORDER BY date DESC"; 
-
-        db.execute(getarticles, (error, results) => {
-            if (error) {
-                console.error("Error fetching articles:", error);
-                return res.status(500).send("There was an error fetching articles.");
-            }
-            res.render("articles", { articles: results });
-        });
+        
+        req.flash('success', 'Article successfully submitted. It will now go under review by GreenSpeak.');
+        res.redirect('/articles');
     });
 });
 

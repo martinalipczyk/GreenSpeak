@@ -20,6 +20,20 @@
           </ul>
         </div>
     </nav>
+
+    <% if (successMessage && successMessage.length > 0) { %>
+        <div class="alert alert-success alert-dismissible fade show fixed-top mx-auto" style="width: fit-content; margin-top: 100px;" role="alert">
+            <%= successMessage %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+    
+    <% if (errorMessage && errorMessage.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible fade show fixed-top mx-auto" style="width: fit-content; margin-top: 100px;" role="alert">
+            <%= errorMessage %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
     <div class="container">
         <h1 class="text-center text-white slide-in-up">View Our Latest Articles</h1>
         <p class="article-description text-center text-white slide-in-up delay-200">
