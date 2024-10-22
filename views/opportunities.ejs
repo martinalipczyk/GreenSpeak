@@ -21,21 +21,22 @@
         </div>
     </nav>
     <div class="container text-center">
-        <h1 class="text-white mb-4">Opportunities and Events</h1>
+        <h1 class="text-white mb-4 slide-in-up">Opportunities and Events</h1>
     </div>
 
     <div class="container text-center">
-        <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal" style="background-color: #55833D;">
+        <button type="button" class="btn text-white slide-in-up delay-200" data-bs-toggle="modal" data-bs-target="#articleModal" style="background-color: #55833D;">
             Post an Opportunity
         </button>
     </div>
     <div class="container mt-4">
         <div class="row">
             <% if (opportunities.length === 0) { %>
-                <p>No opportunities available.</p>
+                <p class="slide-in-up">No opportunities available.</p>
             <% } else { %>
-                <% opportunities.forEach(opportunity => { %>
-                    <div class="col-md-6">
+                <% opportunities.forEach((opportunity, index) => { %>
+                    <% const animationClass = index % 2 === 0 ? 'slide-in-left' : 'slide-in-right' %>
+                    <div class="col-md-6 <%= animationClass %>" style="transition-delay: <%= index * 200 %>ms">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h5 class="card-title"><%= opportunity.event %></h5>
@@ -49,6 +50,7 @@
             <% } %>
         </div>
     </div>
+    
     
     <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -113,6 +115,25 @@
                 navTitle.classList.remove('title-scrolled');
             }
         }
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.slide-in-up, .slide-in-left, .slide-in-right').forEach(element => {
+            observer.observe(element);
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src = "/scripts/modal.js"></script>
