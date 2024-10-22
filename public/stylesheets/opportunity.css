@@ -1,3 +1,40 @@
 body {
-    padding-left: 80px;
+    padding-top: 120px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: url(/images/blurimg3.jpeg);
+}
+
+.content-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.opportunity-details {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-link a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #55833d;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-link a:hover {
+    background-color: #446a31;
 }

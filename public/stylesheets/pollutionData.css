@@ -22,3 +22,17 @@ body {
 .card-header{
     background-color: #d3d4d3;
 }
+
+.widget-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.air-quality-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}

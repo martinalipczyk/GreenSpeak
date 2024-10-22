@@ -13,8 +13,8 @@
         <div class = "container">
           <ul class = "navbar-nav mx-auto me-auto mb-2 mb-sm-0 d-flex fixed-top">
             <li class = "nav-item active"><a href ="/" class = "nav-link">HOME PAGE</a></li>
-            <li class = "nav-item active"><a href = "/articles" class = "nav-link">ARTICLES</a></li>
-            <li class = "nav-title"><img src = "/images/logo.png" width="133.3333px" height="75px"></li>
+            <li id = "articlelink" class = "nav-item active text-center"><a href = "/articles" class = "nav-link">ARTICLES</a></li>
+            <li class = "nav-title mt-0 pt-1"><a href = /home><img src = "/images/logo.png" width="133.3333px" height="75px"></a></li>
             <li class = "nav-item active"><a href = "/opportunities" class = "nav-link">OPPORTUNITIES</a></li>
             <li class = "nav-item active"><a href = "/gallery" class = "nav-link">GALLERY</a></li>
           </ul>
@@ -23,28 +23,35 @@
 
   <div class="masonry-grid">
     <div class="card">
-        <div class="card-header text-black ">Air Quality</div>
-        <div class="card-body d-flex">
-            <div class="flex-grow-1">
-                <% if (!dataList.airQualityData.found) { %>
-                    <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
+      <div class="card-header text-black">Air Quality</div>
+      <div class="card-body">
+          <div class="air-quality-content">
+              <div class="flex-grow-1">
+                  <% if (!dataList.airQualityData.found) { %>
+                      <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
                   <% } else { %>
-                    <p>Air Quality Index: <%= dataList.airQualityData.index.value %> (meersens scale, /100)</p>
-                    <p>Carbon Monoxide: <%= dataList.airQualityData.pollutants.co.index.value %> µg/m³</p>
-                    <p>                 <%= dataList.airQualityData.pollutants.co.index.description %> </p>
-                    <p>Ozone: <%= dataList.airQualityData.pollutants.o3.index.value %> µg/m³</p>
-                    <p>       <%= dataList.airQualityData.pollutants.o3.index.description %> </p>
-                    <p>Nitrogen Dioxide: <%= dataList.airQualityData.pollutants.no2.index.value %> µg/m³</p>
-                    <p>                  <%= dataList.airQualityData.pollutants.no2.index.description %> ³</p>
-                  
-                    <p>What does it mean?: <%= dataList.airQualityData.health_recommendations.all %> </p>
+                      <p>Air Quality Index: <%= dataList.airQualityData.index.value %> (meersens scale, /100)</p>
+                      <p>Carbon Monoxide: <%= dataList.airQualityData.pollutants.co.index.value %> µg/m³</p>
+                      <p><%= dataList.airQualityData.pollutants.co.index.description %></p>
+                      <p>Ozone: <%= dataList.airQualityData.pollutants.o3.index.value %> µg/m³</p>
+                      <p><%= dataList.airQualityData.pollutants.o3.index.description %></p>
+                      <p>Nitrogen Dioxide: <%= dataList.airQualityData.pollutants.no2.index.value %> µg/m³</p>
+                      <p><%= dataList.airQualityData.pollutants.no2.index.description %></p>
+                      <p>What does it mean?: <%= dataList.airQualityData.health_recommendations.all %></p>
                   <% } %>
-            </div>
-            <div class="ms-3" style="width: 230px;">
-                <iframe title="widget" height="340" src="https://widget.airnow.gov/aq-dial-widget/?latitude=<%=latitude%>&longitude=<%=longitude%>" style="border: none; border-radius: 25px; background-color: green" width="100%"></iframe>
-            </div>
-        </div>
-    </div>
+              </div>
+              <div class="widget-container">
+                  <iframe 
+                      title="widget" 
+                      height="340" 
+                      src="https://widget.airnow.gov/aq-dial-widget/?latitude=<%=latitude%>&longitude=<%=longitude%>" 
+                      style="border: none; border-radius: 25px; background-color: green" 
+                      width="230px">
+                  </iframe>
+              </div>
+          </div>
+      </div>
+  </div>
 
     <div class="card">
       <div class="card-header text-black">Air Quality Map</div>

@@ -20,6 +20,12 @@ body {
     transition: background-color 0.3s ease-in-out;
 }
 
+.navbar.bg-scrolled {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
 .first_bg{  
     height:100vh;
     background-image:url('/images/nature10.jpg');
@@ -70,6 +76,7 @@ body {
     font-size: 20px; 
     color: #333; 
     line-height: 1.5;
+    padding-left:20px;
 }
 
 #third_bg {
@@ -176,6 +183,7 @@ body {
     font-size: 20px; 
     color: #333; 
     line-height: 1.5;
+    padding-left: 50px;
 }
 
 #opp-section {
@@ -200,6 +208,7 @@ body {
     font-size: 20px; 
     /* color: #333;  */
     line-height: 1.5;
+    padding-left:20px;
 }
 
 #zipCodeForm {
@@ -297,5 +306,42 @@ button:hover {
     color: #28a745;
 }
 
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.8s ease-out;
+}
 
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.8s ease-out;
+}
 
+.slide-in-up {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.slide-in-left.visible,
+.slide-in-right.visible,
+.slide-in-up.visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+.content-container {
+    overflow: hidden;
+}
+
+.delay-200 { transition-delay: 200ms; }
+.delay-400 { transition-delay: 400ms; }
+
+#arrow {
+    transition: transform 0.3s ease;
+}
+
+#learn-more:hover #arrow {
+    transform: translateX(10px);
+}
