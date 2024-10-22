@@ -94,20 +94,15 @@
 </div>
 
 
-<!-- Footer Section -->
 <footer class="footer bg-light text-center text-lg-start mt-auto slide-in-up">
   <div class="container p-4">
 
-      <!-- Row with two columns -->
       <div class="row">
 
-          <!-- About Column -->
           <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
               <h5 class="text-uppercase">Contact Us</h5>
               <p>Green Speak is committed to promoting environmental events and opportunities that help create a better future. You can contact us at @greenspeak@bergen.org.</p>
           </div>
-
-          <!-- Quick Links Column -->
           <div class="col-lg-4 col-md-6 mb-4 mb-md-0">
               <h5 class="text-uppercase">Quick Links</h5>
               <ul class="list-unstyled">
@@ -131,8 +126,7 @@
               
           </div>
 
-          <!-- Newsletter Columnf4
-     -->
+          
           <div class="col-lg-4 col-md-12 mb-4 mb-md-0">
               <h5 class="text-uppercase">Newsletter</h5>
               <p>Sign up to receive updates on upcoming events and news!</p>
@@ -147,22 +141,7 @@
 
   </div>
 
-  <!-- <div class="container pb-0">
-      <section class="mb-4">
-          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button">
-              <i class="fab fa-facebook-f"></i>
-          </a>
-          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button">
-              <i class="fab fa-twitter"></i>
-          </a>
-          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button">
-              <i class="fab fa-instagram"></i>
-          </a>
-          <a class="btn btn-outline-dark btn-floating m-1" href="#!" role="button">
-              <i class="fab fa-linkedin-in"></i>
-          </a>
-      </section>
-  </div> -->
+ 
 
   <div class="text-center p-3 bg-dark text-white">
       <a class = "gg" href = "https://github.com/martinalipczyk/GreenSpeak">2024 GreenSpeak</a>
@@ -192,7 +171,7 @@
   const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.2  // Trigger slightly earlier
+            threshold: 0.2  
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
@@ -202,8 +181,6 @@
                 }
             });
         }, observerOptions);
-
-        // Observe all animated elements
         document.querySelectorAll('.slide-in-left, .slide-in-right, .slide-in-up').forEach(element => {
             observer.observe(element);
         });
