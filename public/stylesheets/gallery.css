@@ -1,7 +1,9 @@
 body{
     padding-left: 80px;
     padding-right: 80px;
-    background-color: #f9f9f9;
+    background-image: url(/images/blurimg3.jpeg);
+    padding-bottom: 50px;
+
 }
 
 .gallery {

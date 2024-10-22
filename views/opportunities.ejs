@@ -41,7 +41,7 @@
                                 <h5 class="card-title"><%= opportunity.event %></h5>
                                 <p class="card-text"><strong>Organizer/Organization:</strong> <%= opportunity.organization %></p>
                                 <p class="card-text"><strong>Date:</strong> <%= new Date(opportunity.date).toISOString().slice(0, 10) %></p>
-                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-outline-success">More Information</a>
+                                <a href="/opportunities/<%= opportunity.opp_id %>" class="btn btn-outline-custom">More Information</a>
                             </div>
                         </div>
                     </div>

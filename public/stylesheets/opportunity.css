@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: rgba(86, 131, 61, 0.138);
+    background-image: url(/images/blurimg3.jpeg);
 }
 
 .content-container {
