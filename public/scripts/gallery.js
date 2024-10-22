@@ -24,6 +24,11 @@ function submitForm() {
                 </div>
             `;
             gallery.appendChild(newImageDiv);
+            
+            // Add animation class after a small delay to ensure DOM update
+            setTimeout(() => {
+                newImageDiv.classList.add('new-item');
+            }, 10);
         };
 
         reader.readAsDataURL(imageFile);
@@ -35,3 +40,12 @@ function submitForm() {
         alert('Please fill out all fields and upload an image.');
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const items = document.querySelectorAll('.gallery-item');
+    items.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add('slide-in');
+        }, index * 200); 
+    });
+});

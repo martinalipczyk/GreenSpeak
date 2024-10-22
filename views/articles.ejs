@@ -82,26 +82,7 @@
         </div>
     </div>
 
-    <!-- <div class="container mt-4 articles">
-        <div class="row">
-            <% if (articles.length === 0) { %>
-                <p>No articles available.</p>
-            <% } else { %>
-                <% articles.forEach(article => { %>
-                    <div class="col-md-6">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title"><%= article.title %></h5>
-                                <p class="card-text"><strong>Author:</strong> <%= article.first_name %> <%= article.last_name %></p>
-                                <p class="card-text"><strong>Published on:</strong> <%= new Date(article.date).toISOString().slice(0, 10) %></p>
-                                <a href="/articles/<%= article.article_id %>" class="btn btn-outline-success">More Information</a>
-                            </div>
-                        </div>
-                    </div>
-                <% }); %>
-            <% } %>
-        </div>
-    </div> -->
+    
 
     <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -153,7 +134,6 @@
     </div>
 
     <script>
-          // Existing navbar scroll handling
           window.addEventListener('scroll', handleScroll);
         handleScroll();
 
@@ -172,7 +152,6 @@
             }
         }
 
-        // Add Intersection Observer for animations
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -187,7 +166,6 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
         document.querySelectorAll('.slide-in-up, .slide-in-left, .slide-in-right').forEach(element => {
             observer.observe(element);
         });

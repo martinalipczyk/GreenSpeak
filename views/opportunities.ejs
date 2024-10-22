@@ -34,9 +34,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <% } %>
-    
+
     <div class="container text-center">
         <h1 class="text-white mb-4 slide-in-up">Opportunities and Events</h1>
+        <p class = "text-white mb-4 slide-in-up">Find opportunities and events in your area to become a more active environmentalist in your community. In addition, submit events such as cleanups to inform others about how they can get involved. (We will fact-check all submissions before allowing them to be displayed in order to prevent misinformation.)
+
+        </p>
     </div>
 
     <div class="container text-center">
@@ -145,7 +148,6 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
         document.querySelectorAll('.slide-in-up, .slide-in-left, .slide-in-right').forEach(element => {
             observer.observe(element);
         });
