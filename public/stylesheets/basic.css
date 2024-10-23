@@ -51,23 +51,23 @@ nav {
     margin-top: 3px;
     font-size: 40px; 
     font-weight: bold;
-    color: rgba(53,76,62,255); /* Original font color */
+    color: rgba(53,76,62,255); 
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Times New Roman', Times, serif; /* Font family */
-    transition: color 0.3s ease; /* Smooth transition for color */
+    font-family: 'Times New Roman', Times, serif; 
+    transition: color 0.3s ease; 
 }
 
 .title-scrolled {
-    color: rgba(53,76,62,255); /* Change font color when scrolled */
+    color: rgba(53,76,62,255); 
 }
 
 .navbar .nav-link {
     font-family: 'Poppins', sans-serif;
-    color: black; /* Default color when transparent */
-    transition: color 1s ease-in-out; /* Smooth transition */
+    color: black; 
+    transition: color 1s ease-in-out; 
 }
 
 .navbar.bg-transparent {
@@ -82,4 +82,8 @@ nav {
 
 .navbar.bg-scrolled .nav-link {
     color: black !important;
+}
+
+#link-text{
+    font-family: 'Poppins', sans-serif;
 }

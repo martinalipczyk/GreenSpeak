@@ -1,3 +1,4 @@
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -145,7 +146,7 @@ body {
     border: none; 
     border-radius: 5px; 
     font-size: 20px; 
-    font-family: 'Times New Roman', Times, serif; 
+    /* font-family: 'Times New Roman', Times, serif;  */
     transition: color 0.3s; 
     line-height: 1.5;
 }
@@ -269,7 +270,7 @@ button:hover {
 .footer {
     background-color: #f8f9fa;
     padding-top: 40px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .footer h5 {
@@ -344,4 +345,9 @@ button:hover {
 
 #learn-more:hover #arrow {
     transform: translateX(10px);
+}
+
+.link-text{
+    font-family: 'Poppins', sans-serif;
+    color: white;
 }

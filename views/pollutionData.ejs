@@ -23,7 +23,7 @@
 
   <div class="masonry-grid">
     <div class="card">
-      <div class="card-header text-black">Air Quality</div>
+      <div class="card-header text-black"><strong>Air Quality</strong></div>
       <div class="card-body">
           <div class="air-quality-content">
               <div class="flex-grow-1">
@@ -54,14 +54,14 @@
   </div>
 
     <div class="card">
-      <div class="card-header text-black">Air Quality Map</div>
+      <div class="card-header text-black"><strong>Air Quality Map</strong></div>
       <div class="card-body">
           <iframe title="map" height= 100% width= 100% src="https://gispub.epa.gov/airnow/?monitors=ozonepm&basemap=topographic&contours=none&xmin=-8300000&xmax=-8250000&ymin=4950000&ymax=5050000" style="border: none; border-radius: 25px;"></iframe>
       </div>
     </div>
 
     <div class="card">
-        <div class="card-header text-black">Noise Data</div>
+        <div class="card-header text-black"><strong>Noise Data</strong></div>
         <div class="card-body">
             <% if (!dataList.noiseData.found) { %>
                 <p>No noise pollution information found for zip code: <%= dataList.zipCode %></p>
@@ -72,7 +72,7 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header text-black">Pollen Data</div>
+        <div class="card-header text-black"><strong>Pollen Data</strong></div>
         <div class="card-body">
             <% if (!dataList.pollenData.found) { %>
                 <p>No pollen information found for zip code: <%= dataList.zipCode %></p>
@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header text-black">UV Index</div>
+        <div class="card-header text-black"><strong>UV Index</strong></div>
         <div class="card-body">
             <% if (!dataList.uvData.found) { %>
                 <p>No UV information found for zip code: <%= dataList.zipCode %></p>
@@ -96,10 +96,10 @@
         </div>
     </div>
     <div class="card">
-        <div class="card-header text-black">Water Quality</div>
+        <div class="card-header text-black"><strong>Water Quality</strong></div>
         <div class="card-body">
             <% if (!dataList.waterData.found) { %>
-                <p>No air quality information found for zip code: <%= dataList.zipCode %></p>
+                <p>No water quality information found for zip code: <%= dataList.zipCode %></p>
               <% } else { %>
                 <p>Water Contaminants: <%= dataList.waterData.index.value %></p>
                 <p>What does it mean?: <%= dataList.waterData.health_recommendations.all%></p>
@@ -110,7 +110,7 @@
 
  
 <div class = "card">
-  <div class = "card-header text-black">Additional Generated Insights</div>
+  <div class = "card-header text-black"><strong>Additional Generated Insights</strong></div>
   <div class = "card-body">
     <p><%= huggingFaceInsights %></p>
   </div>
