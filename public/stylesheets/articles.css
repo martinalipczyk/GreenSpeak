@@ -2,6 +2,15 @@ body{
     background-image:url(/images/blurimg2.jpeg);
 }
 
+#sbartbtn {
+    background-color: #55833D;
+    transition: background-color 0.3s ease;
+}
+
+#sbartbtn:hover {
+    background-color: #3d5b2cbd;
+}
+
 .slide-in-up {
     opacity: 0;
     transform: translateY(50px);

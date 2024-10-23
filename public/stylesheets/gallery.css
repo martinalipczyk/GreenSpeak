@@ -76,11 +76,12 @@ body{
 #submitbtn{
     align-items: center;
     align-self: center;
-}
-
-
-
-#submitbtn {
+    background-color: #55833D;
+    transition: background-color 0.3s ease;
     margin-top: 20px;
     align-self: center;
+}
+
+#submitbtn:hover {
+    background-color: #3d5b2cbd;
 }

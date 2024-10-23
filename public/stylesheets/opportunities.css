@@ -6,6 +6,26 @@ html {
 
 }
 
+#sbartbtn {
+    background-color: #55833D;
+    transition: background-color 0.3s ease;
+}
+
+#sbartbtn:hover {
+    background-color: #3d5b2cbd;
+}
+.submit-opportunity-container {
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.submit-opportunity-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .btn-outline-custom {
     color: #55833D; 
     background-color: transparent;

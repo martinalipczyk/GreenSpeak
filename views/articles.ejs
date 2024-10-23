@@ -45,7 +45,7 @@
 
     <div class="container submit-article-container text-center slide-in-up delay-400">
         <div>
-            <button type="button" class="btn text-white" data-bs-toggle="modal" data-bs-target="#articleModal" style="background-color: #55833D;">
+            <button type="submit" id = "sbartbtn" class="btn text-white sbartbtn" data-bs-toggle="modal" data-bs-target="#articleModal">
                 Submit an Article
             </button>
         </div>
@@ -85,7 +85,7 @@
     
 
     <div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width:500px">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="articleModalLabel">Submit an Article</h5>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="text" class="form-label">Text</label>
-                            <textarea class="form-control" id="text" name="text" required></textarea>
+                            <textarea class="form-control" id="text" style="height:200px"name="text" required></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="institution" class="form-label">Institution</label>
